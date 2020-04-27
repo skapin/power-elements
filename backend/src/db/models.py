@@ -42,3 +42,48 @@ class Account(Base):
 
     def __repr__(self):
         return '<Account %r (%s)>' % (self.name, self.uniqid)
+
+
+class Question(Base):
+    __tablename__ = 'question'
+
+    uniqid = Column(String(36), primary_key=True)
+    name = Column(String(255), nullable=False)
+    created_at = Column(DateTime, unique=False, default=datetime.datetime.utcnow)
+
+    def __init__(self, name):
+        self.uniqid = str(uuid4())
+        self.name = name
+        self.created_at = datetime.datetime.utcnow()
+
+    def get_data(self):
+        return {'uniqid': self.uniqid,
+                'name': self.name}
+
+    def __repr__(self):
+        return '<Question %r (%s)>' % (self.name, self.uniqid)
+
+
+class Response(Base):
+    __tablename__ = 'response'
+
+    uniqid = Column(String(36), primary_key=True)
+    value = Column(Boolean, nullable=False)
+    created_at = Column(DateTime, unique=False, default=datetime.datetime.utcnow)
+
+    question_id = Column(String(36), ForeignKey('question.uniqid', onupdate="CASCADE"))
+    question = relationship('Question', backref=backref('responses', lazy='dynamic'))
+
+    account_id = Column(String(36), ForeignKey('account.uniqid', onupdate="CASCADE"))
+    account = relationship('Account', backref=backref('responses', lazy='dynamic'))
+
+    def __init__(self, value, question_obj, account_obj):
+        self.uniqid = str(uuid4())
+        self.value = value
+        self.question = question_obj
+        self.account = account_obj
+        self.created_at = datetime.datetime.utcnow()
+
+    def __repr__(self):
+        return '<Response %r (%r) (%s)>' % (self.valide, self.time, self.uniqid)
+

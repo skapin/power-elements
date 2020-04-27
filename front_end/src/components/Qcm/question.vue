@@ -9,7 +9,7 @@
           <span> 0 </span>
         </v-ons-col>
         <v-ons-col width="80%" vertical-align="center">
-          <v-ons-range v-model="volume" style="width: 90%;"></v-ons-range>
+          <v-ons-range @click="clickAnswer()" v-model="volume" style="width: 90%;"></v-ons-range>
         </v-ons-col>
         <v-ons-col width="10%" vertical-align="center">
           <span> 100 </span>
@@ -23,32 +23,25 @@
 
 export default{
   props: {
+    id: {
+      default: ''
+    },
     question: {
       default: 'covid AIO',
     },
+    questionId: {
+      default: ''
+    }
   },
   data () {
     return {
-      checkedAnswer: '',
       volume: '',
-      progressValue: null,
-      selectedAnswer: -1,
-      selectedAnswerObj: null
     }
   },
   methods: {
-    classResponse: function ($index, isCorrectAnswer) {
-      return {'selected-response': this.selectedAnswer === $index && !this.displayResponse, 'bad-response': this.selectedAnswer === $index && this.displayResponse && !isCorrectAnswer, 'good-response': this.selectedAnswer === $index && this.displayResponse && isCorrectAnswer}
+    clickAnswer () {
+      this.$emit('clicked', {'id': this.id, 'answer': this.volume, 'question_id': this.questionId})
     },
-    clickAnswere ($index, obj) {
-      if (!this.displayResponse) {
-        this.selectedAnswer = $index
-        this.selectedAnswerObj = obj
-        this.$emit('clicked', {'id': this.id, 'answer': obj, 'question_id': this.questionId})
-      }
-    },
-  },
-  mounted () {
   }
   // eslint-disable-next-line
 };

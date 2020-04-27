@@ -2,13 +2,18 @@
   <v-ons-page>
     <navbar enabled="false"></navbar>
     <div class="home-page">
-      <question></question>
-      <question></question>
-      <question></question>
-      <question></question>
-      <question></question>
-      <question></question>
-      <question></question>
+      <question @clicked="onClickChild"
+                questionId='1'
+                id='1'
+                question='Question 1'/>
+      <question @clicked="onClickChild"
+                questionId='2'
+                id='2'
+                question='Question 2'/>
+      <question @clicked="onClickChild"
+                questionId='3'
+                id='3'
+                question='Question 3'/>
     </div>
   </v-ons-page>
 </template>
@@ -25,11 +30,19 @@ export default {
   },
   data() {
     return {
-      striker: {
-      }
+      qcmAnswers: []
     }
   },
   methods: {
+    onClickChild (value) {
+      if (this.qcmAnswers[value.id] === undefined) {
+        this.qcmAnswers[value.id] = []
+        this.qcmAnswers[value.id] = value.answer
+      } else {
+        this.qcmAnswers[value.id] = value.answer
+      }
+      console.log(this.qcmAnswers)
+    },
   },
   computed: {
   }

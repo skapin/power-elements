@@ -4,6 +4,7 @@ import click
 
 from flask.cli import with_appcontext
 from server.extensions import db
+from common.db.base import Database
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.join(HERE, os.pardir)
@@ -13,7 +14,8 @@ TEST_PATH = os.path.join(PROJECT_ROOT, 'tests')
 @click.command()
 @with_appcontext
 def create_all():
-    pass
+    with Database(auto_commit=True, create_all=True) as db:
+        click.echo('Create Database')
 
 
 @click.command()
