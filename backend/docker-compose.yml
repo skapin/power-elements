@@ -1,0 +1,35 @@
+version: '2'
+services:
+  app:
+    build: .
+    volumes:
+      - ./src:/usr/src/app
+    ports:
+      - 9012:9009
+    env_file: .env-dev
+    command: ["dev"]
+    links:
+      - postgres:postgres
+    restart: always
+  postgres:
+    image: postgres
+    env_file: .env-dev
+    restart: always
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+  streaming:
+    env_file: .env-dev
+    build: .
+    volumes:
+      - ./src:/usr/src/app
+    command: ["streaming"]
+    restart: always
+    depends_on:
+      - "postgres"
+      - "app"
+    ports:
+      - 9988:9988
+      # - 8520:8520/tcp
+volumes:
+  postgresdata:
+
