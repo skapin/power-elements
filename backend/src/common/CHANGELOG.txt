@@ -1,0 +1,71 @@
+[27/09/2019] - Ajout des sensors présents à la création d'un session
+psql -p 5432 -h 127.0.0.1 -U ilfautkombos kombos_v4
+ALTER TABLE session ADD sensors VARCHAR(1024);
+
+[05/02/2019] - Ajout commentaire parc numii
+psql -p 5432 -h 127.0.0.1 -U ilfautkombos kombos_v4
+ALTER TABLE numii ADD commentary text NULL;
+
+[22/08/2018] - Création cloud local
+uniqid customer unique: e79aa54d-2494-4aaf-a26e-e9b60315edd2\
+
+[08/10/2019] - add tf into Session
+executer ALTER TABLE session ADD transform TEXT NULL;
+
+
+[25/10/2018] - add anthropo data to Session
+executer ALTER TABLE session ADD size FLOAT NULL;
+executer ALTER TABLE session ADD weight INT NULL;
+executer ALTER TABLE session ADD age INT NULL;
+executer ALTER TABLE session ADD gender TEXT NULL;
+executer ALTER TABLE session ADD emotion TEXT NULL;
+
+[02/05/2018] - Migration de la base postgreSQL - Cloud
+executer docker-compose up depuis cloud
+executer docker-compose exec postgres bash
+executer psql -p 5432 -h 127.0.0.1 -U ilfautkombos kombos_v4
+executer ALTER TABLE session ADD extrapolated_date timestamp;
+
+[20/04/2018] - Migration de la base postgreSQL - Cloud
+executer docker-compose up depuis cloud
+executer docker-compose exec postgres bash
+executer psql -p 5432 -h 127.0.0.1 -U ilfautkombos kombos_v4
+executer ALTER TABLE workstation ADD moy_last_month integer;
+executer ALTER TABLE workstation ADD evolution_3_month integer;
+executer ALTER TABLE workstation ADD evolution_6_month integer;
+executer ALTER TABLE workstation ADD evolution_3_month_pts integer;
+executer ALTER TABLE workstation ADD evolution_6_month_pts integer;
+
+
+[10/0/2018] - Add Billed attr to Session - Cloud
+ALTER TABLE session ADD billed BOOLEAN NULL DEFAULT False;
+
+[09/0/2018] - Add GPS lat/long filed on workstation - Cloud
+ALTER TABLE customer ADD password text NULL;
+ALTER TABLE customer ADD email text NULL;
+
+[26/03/2018] - Add GPS lat/long filed on workstation - Cloud
+executer ALTER TABLE workstation ADD latitude FLOAT NULL;
+executer ALTER TABLE workstation ADD longitude FLOAT NULL;
+
+
+[19/03/2018] - Add GPS lat/long filed on session - Cloud
+executer ALTER TABLE session ADD latitude FLOAT NULL;
+executer ALTER TABLE session ADD longitude FLOAT NULL;
+
+
+[19/01/2018] - Migration de la base postgreSQL - Cloud
+executer docker-compose up depuis cloud
+executer docker-compose exec postgres bash
+executer psql -p 5432 -h 127.0.0.1 -U ilfautkombos kombos_v4
+executer ALTER TABLE session ADD tagged_by_person text;
+executer ALTER TABLE session ADD FOREIGN KEY (tagged_by_person) REFERENCES person(uniqid);
+
+[19/01/2018] - Migration de la base postgreSQL - Ros
+ssh kombos@192.168.8.1
+cd ros
+docker exec -it daiocker_postgres_1 bash
+psql  -p 5432 -h 172.17.0.1 -U kombo_aio kombo_v1
+executer ALTER TABLE session ADD tagged BOOLEAN NULL DEFAULT False;
+executer ALTER TABLE session ADD tagged_by_person text;
+executer ALTER TABLE session ADD FOREIGN KEY (tagged_by_person) REFERENCES person(uniqid);

@@ -1,3 +1,64 @@
+<template>
+<v-ons-page id="app">
+  <router-view></router-view>
+  <v-ons-splitter>
+    <v-ons-splitter-side swipeable collapse width="250px" :open.sync="menuIsOpen" @update:open="onUserInteraction">
+      <side-menu></side-menu>
+    </v-ons-splitter-side>
+
+    <v-ons-splitter-content>
+      <transition name="slide-fade">
+        <router-view></router-view>
+      </transition>
+    </v-ons-splitter-content>
+  </v-ons-splitter>
+</v-ons-page>
+</template>
+
+<script>
+import SideMenu from './components/side-menu/SideMenu';
+import HomePage from './pages/home/HomePage';
+import LoginPage from './pages/login-form/LoginPage.vue';
+import store from './store';
+
+export default {
+  name: 'app',
+  store,
+  data() {
+    return {
+      pageStack: [ LoginPage ]
+    }
+  },
+  computed: {
+    menuIsOpen() {
+      return store.state.menuIsOpen;
+    },
+  },
+  components: {
+    SideMenu,
+  },
+  methods: {
+    onUserInteraction(event) {
+      console.log(event);   // on click ons-splitter-side-mask, event always false(?)
+      store.commit('toggleMenu', event);
+    },
+    toggleMenu() {
+      this.$store.commit('toggleMenu', true);
+    },
+    getIfLoggedIn () {
+      return !_.isEmpty(window.localStorage.getItem('jwtToken'))
+    },
+  },
+  mounted: function () {
+    if(this.getIfLoggedIn()) {
+      this.goTo('home')
+    } else {
+      this.goTo('loginPage')
+    }
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .header {
   text-align: center;
@@ -32,52 +93,3 @@ navbar {
   opacity: 0;
 }
 </style>
-
-<template>
-<v-ons-page id="app">
-  <v-ons-splitter>
-    <v-ons-splitter-side swipeable collapse width="250px" :animation="$ons.platform.isAndroid() ? 'overlay' : 'reveal'" :open.sync="menuIsOpen" @update:open="onUserInteraction">
-      <side-menu></side-menu>
-    </v-ons-splitter-side>
-
-    <v-ons-splitter-content>
-      <transition name="slide-fade">
-        <router-view></router-view>
-      </transition>
-    </v-ons-splitter-content>
-  </v-ons-splitter>
-</v-ons-page>
-</template>
-
-<script>
-import SideMenu from './components/side-menu/SideMenu';
-import HomePage from './pages/home/HomePage';
-import store from './store';
-
-export default {
-  name: 'app',
-  store,
-  data() {
-    return {
-      pageStack: [HomePage]
-    }
-  },
-  computed: {
-    menuIsOpen() {
-      return store.state.menuIsOpen;
-    },
-  },
-  components: {
-    SideMenu,
-  },
-  methods: {
-    onUserInteraction(event) {
-      console.log(event);   // on click ons-splitter-side-mask, event always false(?)
-      store.commit('toggleMenu', event);
-    },
-    toggleMenu() {
-      this.$store.commit('toggleMenu', true);
-    },
-  },
-};
-</script>

@@ -1,17 +1,3 @@
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-  .header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  img {
-    max-width: 150px;
-  }
-  ons-list-item {
-    cursor: pointer;
-  }
-</style>
-
 <template>
   <v-ons-page>
     <v-ons-toolbar modifier="transparent"></v-ons-toolbar>
@@ -75,3 +61,17 @@ export default {
   },
 };
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  img {
+    max-width: 150px;
+  }
+  ons-list-item {
+    cursor: pointer;
+  }
+</style>

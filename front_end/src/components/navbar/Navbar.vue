@@ -1,17 +1,3 @@
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-  .header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  img {
-    max-width: 150px;
-  }
-  ons-list-item {
-    cursor: pointer;
-  }
-</style>
-
 <template>
   <v-ons-toolbar class="home-toolbar">
     <div v-if="navType=='menu'" class="left">
@@ -34,7 +20,7 @@ export default {
       default: 'Strike Zone',
     },
     navType: {
-      default: 'menu',
+      default: 'back',
     },
   },
   methods: {
@@ -44,3 +30,17 @@ export default {
   },
 };
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  img {
+    max-width: 150px;
+  }
+  ons-list-item {
+    cursor: pointer;
+  }
+</style>
