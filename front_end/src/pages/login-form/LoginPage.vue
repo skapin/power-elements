@@ -1,6 +1,6 @@
 <template>
   <v-ons-page>
-    <navbar></navbar>
+    <navbar enabled="false"></navbar>
     <div class="login-page">
       <div class="center-screen">
         <v-ons-row>

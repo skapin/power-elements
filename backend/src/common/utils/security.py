@@ -1,7 +1,7 @@
 
 import jwt
 import datetime
-
+import logging
 
 from functools import wraps
 from flask import abort, request
@@ -16,6 +16,7 @@ ONE_YEARS = 60 * 60 * 24 * 7 * 52
 
 decorator_with_args = lambda decorator: lambda *args, **kwargs: lambda func: decorator(func, *args, **kwargs)
 
+LOG = logging.getLogger(__name__)
 
 def extract_payload(token):
     try:
@@ -36,20 +37,25 @@ def extract_payload(token):
 def authentication_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
+        LOG.info("===>")
         # return f(user={}, *args, **kwargs)
         if 'Authorization' not in request.headers:
             abort(403, 'User not logged or no token received')
         token = request.headers['Authorization']
         token = token.split('Bearer ')
+        LOG.info("===> split")
         if len(token) > 1:
             token = token[1]
         else:
             abort(403, 'Empty token')
         try:
             payload = extract_payload(token)
+            LOG.info("===> extract")
         except Exception as e:
+            LOG.info("===> exct")
             abort(403, 'User not logged or session expired ' + str(e))
         else:
+            LOG.info("===>return")
             return f(user=payload, *args, **kwargs)
     return decorated_function
 

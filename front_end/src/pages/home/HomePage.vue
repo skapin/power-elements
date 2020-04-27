@@ -1,17 +1,27 @@
 <template>
   <v-ons-page>
-    <navbar></navbar>
-    <p>HELLO WORLD</p>
+    <navbar enabled="false"></navbar>
+    <div class="home-page">
+      <question></question>
+      <question></question>
+      <question></question>
+      <question></question>
+      <question></question>
+      <question></question>
+      <question></question>
+    </div>
   </v-ons-page>
 </template>
 
 <script>
 import Navbar from '../../components/navbar/Navbar';
+import Question from '../../components/Qcm/question'
 
 export default {
   name: 'posts-page',
   components: {
-    Navbar
+    Navbar,
+    Question
   },
   data() {
     return {
@@ -32,5 +42,10 @@ export default {
 }
 .body {
   margin-top: 50px;
+}
+.home-page {
+  height: 100vh;
+  overflow: auto;
+  background: linear-gradient(#61d7ff, #2667a8);
 }
 </style>

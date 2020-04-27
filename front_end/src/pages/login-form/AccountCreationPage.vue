@@ -1,6 +1,6 @@
 <template>
   <v-ons-page>
-    <navbar></navbar>
+    <navbar returnPath="loginPage"></navbar>
     <div class="login-page">
       <div class="center-screen">
         <v-ons-row>
@@ -8,22 +8,6 @@
         </v-ons-row>
         <v-ons-row>
           <p class="login-header">Création de compte</p>
-        </v-ons-row>
-        <v-ons-row class="login-form">
-          <v-ons-input
-            placeholder="Entrer le nom d'utilisateur"
-            float
-            type="text"
-            v-model="user"
-          ></v-ons-input>
-        </v-ons-row>
-        <v-ons-row class="login-form">
-          <v-ons-input
-            placeholder="Entrer un email"
-            float
-            type="text"
-            v-model="mail"
-          ></v-ons-input>
         </v-ons-row>
         <v-ons-row class="login-form">
           <v-ons-input placeholder="Entrer le code" float type="password" v-model="password"></v-ons-input>
@@ -56,8 +40,8 @@ export default {
       server
         .createUser(this.password, this.user, this.mail)
         .then(result => {
-          this.pageStack.pop()
-          this.goTo('login')
+          this.makeToast('Votre identifiant est: ' + result.user)
+          this.goTo('loginPage')
         })
         .catch(() => {
           this.makeToast('Erreur lors de la création de l\'utilisateur')

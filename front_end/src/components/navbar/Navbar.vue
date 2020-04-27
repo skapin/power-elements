@@ -6,7 +6,12 @@
       </v-ons-toolbar-button>
     </div>
     <div v-else-if="navType=='back'" class="left">
-      <v-ons-back-button></v-ons-back-button>
+      <v-ons-button v-if="enabled == 'true'"
+                    @click="goTo(returnPath)"
+                    modifier="quiet"
+                    style="margin: 6px 0">
+        <v-ons-icon size="50px" icon="md-caret-left"></v-ons-icon>
+      </v-ons-button>
     </div>
     <div class="center" style="font-size: 15px;font-weight:800;">{{ msg }}</div>
   </v-ons-toolbar>
@@ -17,11 +22,17 @@ export default {
   name: 'navbar',
   props: {
     msg: {
-      default: 'Strike Zone',
+      default: 'covid AIO',
     },
     navType: {
       default: 'back',
     },
+    returnPath: {
+      default: 'home',
+    },
+    enabled: {
+      default: 'true'
+    }
   },
   methods: {
     toggleMenu() {
