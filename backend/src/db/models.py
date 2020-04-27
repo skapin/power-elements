@@ -17,15 +17,13 @@ class Account(Base):
 
     uniqid = Column(String(36), primary_key=True)
     password = Column(String(89), nullable=True)
-    email = Column(String(120), nullable=True)
     name = Column(String(50), unique=True)
     created_at = Column(DateTime, unique=False, default=datetime.datetime.utcnow)
 
-    def __init__(self, name):
+    def __init__(self, name, password):
         self.uniqid = str(uuid4())
         self.name = name
-        self.password = None
-        self.email = None
+        self.password = password
         self.created_at = datetime.datetime.utcnow()
 
     def set_password(self, password):
@@ -36,9 +34,7 @@ class Account(Base):
 
     def get_data(self):
         return {'uniqid': self.uniqid,
-                'name': self.name,
-                'permission': self.permission,
-                'email': self.email}
+                'name': self.name}
 
     def __repr__(self):
         return '<Account %r (%s)>' % (self.name, self.uniqid)
