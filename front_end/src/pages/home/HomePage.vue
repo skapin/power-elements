@@ -2,18 +2,11 @@
   <v-ons-page>
     <navbar enabled="false"></navbar>
     <div class="home-page">
-      <question @clicked="onClickChild"
-                questionId='1'
-                id='1'
-                question='Question 1'/>
-      <question @clicked="onClickChild"
-                questionId='2'
-                id='2'
-                question='Question 2'/>
-      <question @clicked="onClickChild"
-                questionId='3'
-                id='3'
-                question='Question 3'/>
+      <div v-for="(row, indexRow) in questionsList" v-bind:key="indexRow">
+        <question @clicked="onClickChild"
+                :questionId="row.uniqid"
+                :question="row.name"/>
+      </div>
     </div>
   </v-ons-page>
 </template>
@@ -21,6 +14,7 @@
 <script>
 import Navbar from '../../components/navbar/Navbar';
 import Question from '../../components/Qcm/question'
+import server from './../../api/server.vue'
 
 export default {
   name: 'posts-page',
@@ -30,7 +24,8 @@ export default {
   },
   data() {
     return {
-      qcmAnswers: []
+      qcmAnswers: [],
+      questionsList: []
     }
   },
   methods: {
@@ -41,11 +36,16 @@ export default {
       } else {
         this.qcmAnswers[value.id] = value.answer
       }
-      console.log(this.qcmAnswers)
     },
+    getAppQuestions () {
+      server.getAllQuestions().then((result) => {
+        this.questionsList = result.data
+      })
+    }
   },
-  computed: {
-  }
+  mounted: function () {
+   this.getAppQuestions()
+  },
 };
 </script>
 
