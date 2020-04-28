@@ -14,31 +14,13 @@
 </template>
 
 <script>
-import SideMenu from './components/side-menu/SideMenu';
-import store from './store';
 
 export default {
   name: 'app',
-  store,
-  data() {
-
-  },
-  computed: {
-    menuIsOpen() {
-      return store.state.menuIsOpen;
-    },
-  },
   components: {
     SideMenu,
   },
   methods: {
-    onUserInteraction(event) {
-      console.log(event);   // on click ons-splitter-side-mask, event always false(?)
-      store.commit('toggleMenu', event);
-    },
-    toggleMenu() {
-      this.$store.commit('toggleMenu', true);
-    },
     getIfLoggedIn () {
       return !_.isEmpty(window.localStorage.getItem('jwtToken'))
     },
