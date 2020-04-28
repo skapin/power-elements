@@ -75,19 +75,26 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.bgno {
+  background: inherit;
+}
+
 .page-title {
   text-align: center;
 }
-.body {
-  margin-top: 50px;
+
+.btn:hover {
+  cursor: pointer;
 }
 .home-page {
-  height: 100vh;
-  overflow: auto;
   background: linear-gradient(#61d7ff, #2667a8);
+  max-width: 1200px;
+  margin: auto;
+  min-height: calc(100vh - 44px);
 }
 .validation-button {
-  width: 80%;
+  width: 50%;
+  min-width: 300px;
   margin: 0 auto;
   margin-bottom: 1%;
   margin-top: 3%;

@@ -14,7 +14,7 @@
         </v-ons-row>
         <v-ons-row>
           <v-ons-col>
-            <v-ons-button modifier="large" @click="validatePassword()">Créer le compte</v-ons-button>
+            <v-ons-button class="btn" modifier="large" @click="validatePassword()">Créer le compte</v-ons-button>
           </v-ons-col>
         </v-ons-row>
         </div>
@@ -116,5 +116,8 @@ v-ons-button {
 ons-input{
   width: 50%;
   min-width: 300px;
+}
+.btn:hover {
+  cursor:pointer;
 }
 </style>

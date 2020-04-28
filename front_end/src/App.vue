@@ -4,7 +4,6 @@
     <v-ons-splitter-side swipeable collapse width="250px" :open.sync="menuIsOpen">
       <side-menu></side-menu>
     </v-ons-splitter-side>
-
     <v-ons-splitter-content>
       <transition name="slide-fade">
         <router-view></router-view>
@@ -57,13 +56,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style>
+
+
+
 .header {
   text-align: center;
-  margin-bottom: 20px;
-}
-img {
-  max-width: 150px;
+
 }
 ons-list-item {
   cursor: pointer;
@@ -71,9 +70,7 @@ ons-list-item {
 ons-list-item {
   cursor: pointer;
 }
-navbar {
-  margin-bottom:100px;
-}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
