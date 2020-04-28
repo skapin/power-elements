@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      qcmAnswers: [],
+      qcmAnswers: {},
       questionsList: []
     }
   },
@@ -37,20 +37,26 @@ export default {
         this.qcmAnswers[value.id] = []
         this.qcmAnswers[value.id] = value.answer
       } else {
-        this.qcmAnswers[value.id] = value.answer
+        this.qcmAnswers[value.id] = {'value': value.answer, 'question': value.question}
       }
+      console.log(this.qcmAnswers)
     },
     getAppQuestions () {
       server.getAllQuestions().then((result) => {
         this.questionsList = result.data
+        this.initResponses()
       })
     },
+    initResponses() {
+      this.questionsList.forEach(question => {
+        this.qcmAnswers[question.uniqid] = {'value': '50', 'question': question.name}
+      });
+    },
     sendResponses() {
+      var jwt = window.localStorage.getItem('jwtToken')
+      server.sendResponsesApi(jwt, this.qcmAnswers).then(() => {
         this.makeToast('Réponses envoyées ! Merci !')
-    //   var jwt = window.localStorage.getItem('jwtToken')
-    //   server.sendResponses(jwt, this.qcmAnswers).then(() => {
-    //       this.makeToast('Réponses envoyées ! Merci !')
-    //   })
+      })
     },
     makeToast (text, append = false) {
       // eslint-disable-next-line

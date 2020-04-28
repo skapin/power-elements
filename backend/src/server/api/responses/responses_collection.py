@@ -1,5 +1,6 @@
 import logging
 import csv
+import json
 
 from flask import request, jsonify, abort, Blueprint
 from flask_restful import Resource, reqparse
@@ -49,12 +50,14 @@ class ResponsesCollection(Resource):
         if not params:
             abort(415)
 
-        responses = params.get('responses', False)
+        responses = json.loads(params.get('responses', False))
+        LOG.info(responses)
         decoded_jwt = extract_payload(params.get('jwt', False))
         with Database(auto_commit=True) as db:
             account = db.query(Account).filter_by(uniqid=decoded_jwt['uniqid']).first()
             for response in responses:
-                actual_question = db.query(Question).filter_by(name=response['question']).first()
-                new_response = Response(response['value'], actual_question, account)
+                reponse = responses[response]
+                actual_question = db.query(Question).filter_by(name=reponse['question']).first()
+                new_response = Response(int(reponse['value']), actual_question, account)
                 db.add(new_response)
         return jsonify(True)

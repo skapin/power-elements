@@ -14,15 +14,15 @@ function login(username, password) {
   return http.post('/api/users/login', {'username': username, 'password': password})
 }
 
-function saveResponses(jwt, responses) {
-  return http.post('/api/responses', {'jwt': jwt, 'responses': responses})
+function sendResponsesApi(jwt, responses) {
+  return http.post('/api/responses', {'jwt': jwt, 'responses': JSON.stringify(responses)})
 }
 
 export default {
   getAllQuestions,
   createAccount,
   login,
-  saveResponses
+  sendResponsesApi
 }
 
 </script>

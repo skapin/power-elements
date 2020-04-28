@@ -6,13 +6,13 @@
     <div class="content">
       <v-ons-row>
         <v-ons-col width="10%" vertical-align="center">
-          <span> 0 </span>
+          <span> Non </span>
         </v-ons-col>
         <v-ons-col width="80%" vertical-align="center">
-          <v-ons-range @click="clickAnswer()" v-model="volume" style="width: 90%;"></v-ons-range>
+          <v-ons-range @click="clickAnswer(question)" v-model="volume" style="width: 90%;"></v-ons-range>
         </v-ons-col>
         <v-ons-col width="10%" vertical-align="center">
-          <span> 100 </span>
+          <span> Oui </span>
         </v-ons-col>
       </v-ons-row>
     </div>
@@ -40,7 +40,7 @@ export default{
   },
   methods: {
     clickAnswer () {
-      this.$emit('clicked', {'id': this.id, 'answer': this.volume, 'question_id': this.questionId})
+      this.$emit('clicked', {'id': this.questionId, 'answer': this.volume, 'question': this.question})
     },
   }
   // eslint-disable-next-line
