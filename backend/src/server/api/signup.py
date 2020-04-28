@@ -1,4 +1,5 @@
 import logging
+import random
 
 from flask import request, jsonify, abort, Blueprint
 from flask_restful import Resource, reqparse
@@ -54,8 +55,20 @@ class Signup(Resource):
     )
     def get(self):
 
-        username = "test1"
-        password = "azerty"
+
+        adjectiveList = ["Happy", "Silly", "Tiny", "Super", "Musical", "Funny"]
+
+        colorList = ['Yellow', 'Pink', 'Green', 'Blue', 'Orange', 'Red']
+
+        animalList = ['Elephant', 'Unicorn', 'Giraffe', 'Dinosaur', 'Kangaroo']
+
+        adjective = random.choice(adjectiveList)
+        color = random.choice(colorList)
+        animal = random.choice(animalList)
+        number = str(random.randint(1, 100))
+
+        username = adjective + color + animal + number
+        password = str(random.randint(1000,9999))
         hash = hash_password(password)
         account = False
         with Database(auto_commit=True) as db:
