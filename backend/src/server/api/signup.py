@@ -44,12 +44,8 @@ class Signup(Resource):
               "message": "Missing parameters"
             },
             {
-              "code": 404,
-              "message": "No account found"
-            },
-            {
               "code": 403,
-              "message": "Incorrect password"
+              "message": "Username already existing"
             }
         ]
     )
