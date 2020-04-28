@@ -1,9 +1,16 @@
 <style scoped>
-
+.bluecard {
+  background-color: #215d9e;
+  border: solid 1px white;
+  color: white;
+}
+.bluecard p {
+  color: white;
+}
 </style>
 
 <template>
-  <v-ons-card>
+  <v-ons-card class="bluecard">
       <div class="title">
         Informations importantes
       </div>
