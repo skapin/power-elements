@@ -3,7 +3,7 @@
     <v-ons-toolbar modifier="transparent"></v-ons-toolbar>
     <v-ons-list-title>Infos</v-ons-list-title>
     <v-ons-list>
-        <v-ons-list-item modifier="chevron" tappable>
+        <v-ons-list-item modifier="chevron" tappable @click="goTo('infosLegales')">
           <div class="left">
             <v-ons-icon fixed-width icon="fa-info"></v-ons-icon>
           </div>
