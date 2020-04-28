@@ -25,6 +25,7 @@ rest_api.add_resource(QuestionsCollection, '/api/questions', methods=['GET', 'DE
 rest_api.add_resource(Signup, '/api/users/signup', methods=['POST'])
 rest_api.add_resource(ResponsesCollection, '/api/responses', methods=['POST'])
 
+
 @blueprint.route('/status/is_up', methods=['GET'])
 def is_up():
     return jsonify(is_up=True)

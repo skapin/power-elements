@@ -1,4 +1,5 @@
 import logging
+import random
 
 from flask import request, jsonify, abort, Blueprint
 from flask_restful import Resource, reqparse
@@ -18,13 +19,6 @@ class Signup(Resource):
         notes='Route to add a new customer',
         parameters=[
             {
-              "name": "user",
-              "description": "Username for the new account",
-              "required": True,
-              "allowMultiple": False,
-              "dataType": "string"
-            },
-            {
               "name": "password",
               "description": "Password for the new account",
               "required": True,
@@ -42,12 +36,8 @@ class Signup(Resource):
               "message": "Missing parameters"
             },
             {
-              "code": 404,
-              "message": "No account found"
-            },
-            {
               "code": 403,
-              "message": "Incorrect password"
+              "message": "Username already existing"
             }
         ]
     )
@@ -55,10 +45,23 @@ class Signup(Resource):
         params = PARSER.parse_args()
         if not params:
             abort(415)
-        username = "test3"
+
         password = params.get('password', False)
+
+
+        adjectiveList = ["Happy", "Silly", "Tiny", "Super", "Musical", "Funny"]
+        colorList = ['Yellow', 'Pink', 'Green', 'Blue', 'Orange', 'Red']
+        animalList = ['Elephant', 'Unicorn', 'Giraffe', 'Dinosaur', 'Kangaroo']
+        adjective = random.choice(adjectiveList)
+        color = random.choice(colorList)
+        animal = random.choice(animalList)
+        number = str(random.randint(1, 100))
+
+        username = adjective + color + animal + number
         hash = hash_password(password)
+
         account = False
+
         with Database(auto_commit=True) as db:
             account = db.query(Account).filter_by(name=username).first()
             # if account:
