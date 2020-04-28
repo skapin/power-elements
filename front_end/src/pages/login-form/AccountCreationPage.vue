@@ -18,12 +18,13 @@
           </v-ons-col>
         </v-ons-row>
         </div>
+        <div>
         <v-ons-row>
           <v-ons-col>
             <CardPrivateInfos />
           </v-ons-col>
         </v-ons-row>
-     
+     </div>
     </div>
   </v-ons-page>
 </template>
@@ -84,8 +85,10 @@ v-ons-button {
 .login-form {
   background-color: white;
   padding: 15px;
+  margin: 2px 0;
 }
 .login-header {
+  text-align: center;
   background-color: #215d9e;
   width: 100%;
   height: 100%;
@@ -97,7 +100,6 @@ v-ons-button {
 .center-screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 40vh;
   min-width: 300px;
