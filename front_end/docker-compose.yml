@@ -1,0 +1,19 @@
+frontend:
+    image: webdevops/apache:latest
+    volumes:
+      - ./cordova/www/:/app
+    # labels:
+    #   - traefik.frontend.rule=Host:supermarket.aiotools.ovh
+    #   - traefik.docker.network=proxy
+    #   - traefik.port=80
+    ports:
+      - 8005:80
+      - 8007:443
+    networks:
+      - internal
+      - proxy
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
