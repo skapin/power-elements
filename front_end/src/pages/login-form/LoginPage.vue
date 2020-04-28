@@ -92,7 +92,7 @@ export default {
   margin-top: 25%;
 }
 .login-logo {
-  width: 40vh;
+  width: 100%;
   margin-bottom: 20px;
 }
 .button-page {

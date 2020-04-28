@@ -9,7 +9,7 @@
       <v-ons-button v-if="enabled == 'true'"
                     @click="goTo(returnPath)"
                     modifier="quiet"
-                    style="margin: 6px 0">
+                    style="margin: 3px 0">
         <v-ons-icon size="50px" icon="md-caret-left"></v-ons-icon>
       </v-ons-button>
     </div>
@@ -22,7 +22,7 @@ export default {
   name: 'navbar',
   props: {
     msg: {
-      default: 'covid AIO',
+      default: 'Covid-19 AIO',
     },
     navType: {
       default: 'back',
