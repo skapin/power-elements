@@ -22,10 +22,10 @@
         </v-ons-row>
         <v-ons-row>
           <v-ons-col class="button-page">
-            <v-ons-button modifier="large" @click="goTo('accountCreationPage')">Pas de compte ?</v-ons-button>
+            <v-ons-button class="btn" modifier="large" @click="goTo('accountCreationPage')">Pas de compte ?</v-ons-button>
           </v-ons-col>
           <v-ons-col>
-            <v-ons-button modifier="large" @click="validatePassword()">Se connecter</v-ons-button>
+            <v-ons-button class="btn" modifier="large" @click="validatePassword()">Se connecter</v-ons-button>
           </v-ons-col>
         </v-ons-row>
         
@@ -101,6 +101,11 @@ export default {
 v-ons-button {
   font-size: 24px;
 }
+
+.btn:hover {
+  cursor:pointer !important;
+}
+
 
 .login-form {
   background-color: white;

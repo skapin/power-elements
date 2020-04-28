@@ -1,5 +1,6 @@
 <template>
-  <v-ons-page>
+  <v-ons-page >
+  
     <navbar enabled="false"></navbar>
     <div class="home-page" v-if="questionsList">
       <div v-for="(row, indexRow) in questionsList" v-bind:key="indexRow">
@@ -8,7 +9,7 @@
                 :question="row.name"/>
       </div>
       <div class="validation-button">
-        <v-ons-button @click="sendResponses()" modifier="large">Valider</v-ons-button>
+        <v-ons-button class="btn" @click="sendResponses()" modifier="large">Valider</v-ons-button>
       </div>
     </div>
   </v-ons-page>
@@ -74,16 +75,22 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.bgno {
+  background: inherit;
+}
+
 .page-title {
   text-align: center;
 }
-.body {
-  margin-top: 50px;
+
+.btn:hover {
+  cursor: pointer;
 }
 .home-page {
-  height: 100vh;
-  overflow: auto;
-  background: linear-gradient(#61d7ff, #2667a8);
+
+  max-width: 1200px;
+  margin: auto;
+  min-height: calc(100vh - 44px);
 }
 .validation-button {
   width: 80%;

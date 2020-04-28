@@ -24,9 +24,12 @@ export default {
 </script>
 
 <style>
+
+
+
 .header {
   text-align: center;
-  margin-bottom: 20px;
+
 }
 ons-list-item {
   cursor: pointer;
@@ -34,9 +37,7 @@ ons-list-item {
 ons-list-item {
   cursor: pointer;
 }
-navbar {
-  margin-bottom:100px;
-}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
