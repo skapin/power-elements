@@ -49,6 +49,10 @@ export default {
   background-color: #2667a8;
 }
 
+.btn {
+  color: white !important;
+}
+
 .btn:hover {
   cursor: pointer;
 }
