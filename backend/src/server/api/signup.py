@@ -20,13 +20,6 @@ class Signup(Resource):
         notes='Route to add a new customer',
         parameters=[
             {
-              "name": "user",
-              "description": "Username for the new account",
-              "required": True,
-              "allowMultiple": False,
-              "dataType": "string"
-            },
-            {
               "name": "password",
               "description": "Password for the new account",
               "required": True,
