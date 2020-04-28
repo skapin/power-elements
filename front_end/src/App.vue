@@ -1,25 +1,13 @@
 <template>
-<v-ons-page id="app">
-  <router-view></router-view>
-  <v-ons-splitter>
-    
-
-    <v-ons-splitter-content>
       <transition name="slide-fade">
         <router-view></router-view>
       </transition>
-    </v-ons-splitter-content>
-  </v-ons-splitter>
-</v-ons-page>
 </template>
 
 <script>
 
 export default {
   name: 'app',
-  components: {
-    SideMenu,
-  },
   methods: {
     getIfLoggedIn () {
       return !_.isEmpty(window.localStorage.getItem('jwtToken'))
@@ -35,7 +23,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style>
 .header {
   text-align: center;
   margin-bottom: 20px;
