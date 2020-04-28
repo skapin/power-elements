@@ -75,9 +75,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.bgno {
-  background: inherit;
-}
 
 .page-title {
   text-align: center;
@@ -87,7 +84,6 @@ export default {
   cursor: pointer;
 }
 .home-page {
-  background: linear-gradient(#61d7ff, #2667a8);
   max-width: 1200px;
   margin: auto;
   min-height: calc(100vh - 44px);

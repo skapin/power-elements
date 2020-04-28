@@ -20,9 +20,6 @@ import store from './store';
 export default {
   name: 'app',
   store,
-  data() {
-
-  },
   computed: {
     menuIsOpen: {
         // getter
