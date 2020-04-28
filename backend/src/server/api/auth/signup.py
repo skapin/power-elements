@@ -11,7 +11,6 @@ from flask_restful_swagger import swagger
 LOG = logging.getLogger(__name__)
 
 PARSER = reqparse.RequestParser()
-PARSER.add_argument('user')
 PARSER.add_argument('password')
 
 class Signup(Resource):
@@ -52,18 +51,18 @@ class Signup(Resource):
             }
         ]
     )
-    def get(self):
-
-        username = "test1"
-        password = "azerty"
+    def post(self):
+        params = PARSER.parse_args()
+        if not params:
+            abort(415)
+        username = "test3"
+        password = params.get('password', False)
         hash = hash_password(password)
         account = False
         with Database(auto_commit=True) as db:
             account = db.query(Account).filter_by(name=username).first()
-            if account:
-                abort(403)
+            # if account:
+            #     abort(403)
             new = Account(username, hash)
             db.add(new)
-
-
         return jsonify(Signup=True, Username=username, Password=password)

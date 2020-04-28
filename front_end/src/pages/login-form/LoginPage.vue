@@ -52,7 +52,6 @@ export default {
         .then(result => {
           if (result.data) {
             this.saveLoggedin(result.data)
-            this.pageStack.pop()
             this.goTo('home')
           } else {
             this.makeToast('Le mot de passe saisi est incorrect')

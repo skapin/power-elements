@@ -7,6 +7,9 @@
                 :questionId="row.uniqid"
                 :question="row.name"/>
       </div>
+      <div class="validation-button">
+        <v-ons-button @click="sendResponses()" modifier="large">Valider</v-ons-button>
+      </div>
     </div>
   </v-ons-page>
 </template>
@@ -41,7 +44,22 @@ export default {
       server.getAllQuestions().then((result) => {
         this.questionsList = result.data
       })
-    }
+    },
+    sendResponses() {
+        this.makeToast('Réponses envoyées ! Merci !')
+    //   var jwt = window.localStorage.getItem('jwtToken')
+    //   server.sendResponses(jwt, this.qcmAnswers).then(() => {
+    //       this.makeToast('Réponses envoyées ! Merci !')
+    //   })
+    },
+    makeToast (text, append = false) {
+      // eslint-disable-next-line
+      let toast = this.$toasted.info(text, {
+        theme: 'bubble',
+        position: 'bottom-right',
+        duration: 5000
+      })
+    },
   },
   mounted: function () {
    this.getAppQuestions()
@@ -60,5 +78,11 @@ export default {
   height: 100vh;
   overflow: auto;
   background: linear-gradient(#61d7ff, #2667a8);
+}
+.validation-button {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 1%;
+  margin-top: 3%;
 }
 </style>

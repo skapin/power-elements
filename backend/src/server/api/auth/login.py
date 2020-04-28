@@ -11,7 +11,7 @@ from flask_restful_swagger import swagger
 LOG = logging.getLogger(__name__)
 
 PARSER = reqparse.RequestParser()
-PARSER.add_argument('user')
+PARSER.add_argument('username')
 PARSER.add_argument('password')
 
 class Login(Resource):
@@ -57,7 +57,7 @@ class Login(Resource):
         if not params:
             abort(415)
 
-        username = params.get('user', False)
+        username = params.get('username', False)
         password = params.get('password', False)
         account = False
         with Database(auto_commit=True) as db:

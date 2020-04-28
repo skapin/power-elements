@@ -11,6 +11,7 @@ import 'onsenui/css/onsenui.css';
 import App from './App';
 import routes from './routes';
 import store from './store';
+import Toasted from 'vue-toasted'
 
 import 'onsenui/css/onsen-css-components.css';
 // import '../static/css/onsen-css-components-pink.min.css';
@@ -22,6 +23,7 @@ Vue.use(Element, { locale });
 Vue.use(VueOnsen);
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+Vue.use(Toasted)
 
 const router = new VueRouter({
   mode: 'hash',

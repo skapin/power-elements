@@ -31,16 +31,14 @@ export default {
   data: function () {
     return {
       password: '',
-      user: '',
-      mail: ''
     }
   },
   methods: {
     validatePassword () {
       server
-        .createUser(this.password, this.user, this.mail)
-        .then(result => {
-          this.makeToast('Votre identifiant est: ' + result.user)
+        .createAccount(this.password)
+        .then((result) => {
+          this.makeToast('Votre identifiant est: ' + result.data.Username)
           this.goTo('loginPage')
         })
         .catch(() => {
