@@ -21,7 +21,7 @@ blueprint = Blueprint('views', __name__)
 rest_api.add_resource(Login, '/api/users/login', methods=['POST'])
 rest_api.add_resource(InitQuestions, '/api/questions/load', methods=['GET'])
 rest_api.add_resource(QuestionsCollection, '/api/questions', methods=['GET', 'DELETE'])
-rest_api.add_resource(Signup, '/api/users/signup', methods=['GET'])
+rest_api.add_resource(Signup, '/api/users/signup', methods=['POST'])
 
 @blueprint.route('/status/is_up', methods=['GET'])
 def is_up():

@@ -53,24 +53,28 @@ class Signup(Resource):
             }
         ]
     )
-    def get(self):
+    def post(self):
+
+        params = PARSER.parse_args()
+        if not params:
+            abort(415)
+
+        password = params.get('password', False)
 
 
         adjectiveList = ["Happy", "Silly", "Tiny", "Super", "Musical", "Funny"]
-
         colorList = ['Yellow', 'Pink', 'Green', 'Blue', 'Orange', 'Red']
-
         animalList = ['Elephant', 'Unicorn', 'Giraffe', 'Dinosaur', 'Kangaroo']
-
         adjective = random.choice(adjectiveList)
         color = random.choice(colorList)
         animal = random.choice(animalList)
         number = str(random.randint(1, 100))
 
         username = adjective + color + animal + number
-        password = str(random.randint(1000,9999))
         hash = hash_password(password)
+
         account = False
+
         with Database(auto_commit=True) as db:
             account = db.query(Account).filter_by(name=username).first()
             if account:
