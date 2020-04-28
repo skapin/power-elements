@@ -1,29 +1,26 @@
 <template>
   <v-ons-page>
-    <navbar enabled="false" navType="menu"></navbar>
-    <div class="home-page" v-if="questionsList">
-      <div v-for="(row, indexRow) in questionsList" v-bind:key="indexRow">
-        <question @clicked="onClickChild"
-                :questionId="row.uniqid"
-                :question="row.name"/>
-      </div>
-      <div class="validation-button">
-        <v-ons-button @click="sendResponses()" :disabled="validateDisabled" modifier="large">Valider</v-ons-button>
-      </div>
-    </div>
+    <navbar returnPath="home"></navbar>
+    <ons-card>
+        <div class="title">
+            <h1>Merci !</h1>
+        </div>
+        <div class="content">
+            <p>
+                Belle journée !
+            </p>
+        </div>
+    </ons-card>
   </v-ons-page>
 </template>
 
 <script>
-import Navbar from '../../components/navbar/Navbar';
-import Question from '../../components/Qcm/question'
-import server from './../../api/server.vue'
+import Navbar from '../../components/navbar/Navbar'
 
 export default {
-  name: 'posts-page',
+  name: 'merci',
   components: {
-    Navbar,
-    Question
+    Navbar
   },
   data() {
     return {
@@ -57,7 +54,6 @@ export default {
       var jwt = window.localStorage.getItem('jwtToken')
       server.sendResponsesApi(jwt, this.qcmAnswers).then(() => {
         this.makeToast('Réponses envoyées ! Merci !')
-        this.goTo('merci')
       })
     },
     makeToast (text, append = false) {
@@ -70,12 +66,15 @@ export default {
     },
   },
   mounted: function () {
-   this.getAppQuestions()
+   // this.getAppQuestions()
   },
 };
 </script>
 
 <style lang='scss' scoped>
+.bgno {
+  background: inherit;
+}
 
 .page-title {
   text-align: center;
@@ -85,6 +84,7 @@ export default {
   cursor: pointer;
 }
 .home-page {
+  background: linear-gradient(#61d7ff, #2667a8);
   max-width: 1200px;
   margin: auto;
   min-height: calc(100vh - 44px);
