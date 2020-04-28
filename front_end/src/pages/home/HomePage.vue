@@ -1,6 +1,6 @@
 <template>
   <v-ons-page>
-    <navbar enabled="true"></navbar>
+    <navbar enabled="false"></navbar>
     <div class="home-page" v-if="questionsList">
       <div v-for="(row, indexRow) in questionsList" v-bind:key="indexRow">
         <question @clicked="onClickChild"
