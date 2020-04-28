@@ -11,14 +11,14 @@
         </v-ons-row>
         <v-ons-row class="login-form">
           <v-ons-input
-            placeholder="Entrer le nom d'utilisateur"
+            placeholder="nom d'utilisateur"
             float
             type="text"
             v-model="user"
           ></v-ons-input>
         </v-ons-row>
         <v-ons-row class="login-form">
-          <v-ons-input placeholder="Entrer le code" float type="password" v-model="password"></v-ons-input>
+          <v-ons-input placeholder="mot de passe" float type="password" v-model="password"></v-ons-input>
         </v-ons-row>
         <v-ons-row>
           <v-ons-col class="button-page">
