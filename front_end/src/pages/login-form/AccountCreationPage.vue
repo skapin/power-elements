@@ -72,7 +72,7 @@ export default {
   margin-top: 25%;
 }
 .login-logo {
-  width: 40vh;
+  width: 100%;
   margin-bottom: 20px;
 }
 .button-page {
@@ -98,13 +98,14 @@ v-ons-button {
 }
 .center-screen {
   display: flex;
+  margin-top: 20px;
   flex-direction: column;
   align-items: center;
   width: 40vh;
   min-width: 300px;
 }
 .login-page {
-  height: calc(100vh - 44px);
+  min-height: calc(100vh - 44px);
   display:flex;
   flex-direction: column;
   justify-content: space-around;

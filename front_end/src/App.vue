@@ -17,17 +17,13 @@
 
 <script>
 import SideMenu from './components/side-menu/SideMenu';
-import HomePage from './pages/home/HomePage';
-import LoginPage from './pages/login-form/LoginPage.vue';
 import store from './store';
 
 export default {
   name: 'app',
   store,
   data() {
-    return {
-      pageStack: [ LoginPage ]
-    }
+
   },
   computed: {
     menuIsOpen() {
