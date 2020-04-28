@@ -1,7 +1,7 @@
 <template>
   <v-ons-page>
     <navbar enabled="false"></navbar>
-    <div class="home-page">
+    <div class="home-page" v-if="questionsList">
       <div v-for="(row, indexRow) in questionsList" v-bind:key="indexRow">
         <question @clicked="onClickChild"
                 :questionId="row.uniqid"
@@ -68,6 +68,7 @@ export default {
     },
   },
   mounted: function () {
+    console.log("va chercher les Q")
    this.getAppQuestions()
   },
 };
