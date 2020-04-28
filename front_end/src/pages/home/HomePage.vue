@@ -68,7 +68,6 @@ export default {
     },
   },
   mounted: function () {
-    console.log("va chercher les Q")
    this.getAppQuestions()
   },
 };

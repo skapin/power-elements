@@ -2,9 +2,7 @@
 <v-ons-page id="app">
   <router-view></router-view>
   <v-ons-splitter>
-    <v-ons-splitter-side swipeable collapse width="250px" :open.sync="menuIsOpen" @update:open="onUserInteraction">
-      <side-menu></side-menu>
-    </v-ons-splitter-side>
+    
 
     <v-ons-splitter-content>
       <transition name="slide-fade">
