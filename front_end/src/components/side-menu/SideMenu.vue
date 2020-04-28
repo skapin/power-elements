@@ -1,22 +1,20 @@
 <template>
   <v-ons-page>
     <v-ons-toolbar modifier="transparent"></v-ons-toolbar>
-    <div class="header">
-      <img src="../../assets/noimage.jpeg">
-    </div>
-    <div align="center">
-      <router-link to="user-page">{{info.name}}</router-link>
-      <p>user ID: {{info.ID}}</p>
-    </div>
-
-    <v-ons-list-title>Onsen UI Essential Links</v-ons-list-title>
+    <v-ons-list-title>Infos</v-ons-list-title>
     <v-ons-list>
-      <v-ons-list-item modifier="chevron" v-for="item in essentialLinks" @click="goTo(item.routeName)" :key="item.routeName">
-        <div class="left">
-          <v-ons-icon fixed-width :icon="item.icon"></v-ons-icon>
-        </div>
-        <div class="center">{{ item.label }}</div>
-      </v-ons-list-item>
+        <v-ons-list-item modifier="chevron" tappable>
+          <div class="left">
+            <v-ons-icon fixed-width icon="fa-info"></v-ons-icon>
+          </div>
+          <div class="center">Infos légales</div>
+        </v-ons-list-item>
+        <v-ons-list-item modifier="chevron" tappable @click="signout()">
+          <div class="left">
+            <v-ons-icon fixed-width icon="fa-sign-out"></v-ons-icon>
+          </div>
+          <div class="center">Déconnexion</div>
+        </v-ons-list-item>
     </v-ons-list>
   </v-ons-page>
 </template>
@@ -31,33 +29,16 @@ export default {
   data() {
     return {
       msg: 'OpenWeatherMap',
-      essentialLinks: [
-        {
-          label: 'Home',
-          routeName: 'home',
-          icon: 'fa-home',
-        },
-        {
-          label: 'About',
-          routeName: 'posts',
-          icon: 'fa-info',
-        },
-        {
-          label: 'Test',
-          routeName: 'test',
-          icon: 'fa-info',
-        },
-      ],
-    };
+    }
   },
   computed: mapGetters({
     info: 'getInfo',
   }),
   methods: {
-    goTo(routeName) {
-      this.$router.push({ name: routeName });
-      store.commit('toggleMenu', false);
-    },
+    signout() {
+        window.localStorage.setItem('jwtToken', '')
+        this.goTo('loginPage')
+    }
   },
 };
 </script>

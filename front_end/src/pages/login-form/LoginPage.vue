@@ -28,7 +28,7 @@
             <v-ons-button modifier="large" @click="validatePassword()">Se connecter</v-ons-button>
           </v-ons-col>
         </v-ons-row>
-        
+
       </div>
     </div>
   </v-ons-page>
@@ -76,10 +76,10 @@ export default {
     },
     saveLoggedin (data) {
       window.localStorage.setItem('jwtToken', data.token)
+      this.$store.commit('setInfo', {'Username': data.username})
     }
   },
   mounted: function () {
-    console.log('MAIS LE LOGIN ?')
     this.getIfLoggedIn()
   },
   components: { Navbar }

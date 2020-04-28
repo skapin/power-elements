@@ -67,4 +67,4 @@ class Login(Resource):
             if not account.check_password(password):
                 abort(403)
 
-            return jsonify(login=True, token=generate_user_token(account.get_data()).decode('utf8'))
+            return jsonify(login=True, token=generate_user_token(account.get_data()).decode('utf8'), username=username)

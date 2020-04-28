@@ -1,8 +1,7 @@
 <template>
 <v-ons-page id="app">
-  <router-view></router-view>
   <v-ons-splitter>
-    <v-ons-splitter-side swipeable collapse width="250px" :open.sync="menuIsOpen" @update:open="onUserInteraction">
+    <v-ons-splitter-side swipeable collapse width="250px" :open.sync="menuIsOpen">
       <side-menu></side-menu>
     </v-ons-splitter-side>
 
@@ -26,20 +25,23 @@ export default {
 
   },
   computed: {
-    menuIsOpen() {
-      return store.state.menuIsOpen;
-    },
+    menuIsOpen: {
+        // getter
+      get: function () {
+        return store.state.menuIsOpen
+      },
+        // setter
+      set: function (newValue) {
+        store.commit('toggleMenu');
+      }
+    }
   },
   components: {
     SideMenu,
   },
   methods: {
-    onUserInteraction(event) {
-      console.log(event);   // on click ons-splitter-side-mask, event always false(?)
+    onUserInteraction(event) {   // on click ons-splitter-side-mask, event always false(?)
       store.commit('toggleMenu', event);
-    },
-    toggleMenu() {
-      this.$store.commit('toggleMenu', true);
     },
     getIfLoggedIn () {
       return !_.isEmpty(window.localStorage.getItem('jwtToken'))

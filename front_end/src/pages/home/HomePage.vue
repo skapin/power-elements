@@ -1,6 +1,6 @@
 <template>
   <v-ons-page>
-    <navbar enabled="false"></navbar>
+    <navbar enabled="false" navType="menu"></navbar>
     <div class="home-page" v-if="questionsList">
       <div v-for="(row, indexRow) in questionsList" v-bind:key="indexRow">
         <question @clicked="onClickChild"
@@ -8,7 +8,7 @@
                 :question="row.name"/>
       </div>
       <div class="validation-button">
-        <v-ons-button @click="sendResponses()" modifier="large">Valider</v-ons-button>
+        <v-ons-button @click="sendResponses()" :disabled="validateDisabled" modifier="large">Valider</v-ons-button>
       </div>
     </div>
   </v-ons-page>
@@ -28,7 +28,8 @@ export default {
   data() {
     return {
       qcmAnswers: {},
-      questionsList: []
+      questionsList: [],
+      validateDisabled: true
     }
   },
   methods: {
@@ -39,7 +40,7 @@ export default {
       } else {
         this.qcmAnswers[value.id] = {'value': value.answer, 'question': value.question}
       }
-      console.log(this.qcmAnswers)
+      this.validateDisabled = false
     },
     getAppQuestions () {
       server.getAllQuestions().then((result) => {
@@ -68,7 +69,6 @@ export default {
     },
   },
   mounted: function () {
-    console.log("va chercher les Q")
    this.getAppQuestions()
   },
 };

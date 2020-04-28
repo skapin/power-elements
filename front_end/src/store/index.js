@@ -15,6 +15,11 @@ export default new Vuex.Store({
     currentArea: { id: 1, name: '北海道' },
     username:''
   },
+
+  getters: {
+    getMenuIsOpen: (state) => state.menuIsOpen,
+  },
+
   mutations: {
     toggleMenu(state, isToggle) {
       if (typeof isToggle !== 'undefined') {

@@ -14,6 +14,10 @@ const actions = {
 };
 
 const mutations = {
+    setInfo (state, params) {
+        console.log(params)
+        state.info = {'name': params.Username, 'ID': params.Username}
+    }
 
 };
 

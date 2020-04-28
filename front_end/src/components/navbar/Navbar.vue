@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     toggleMenu() {
-      this.$store.commit('toggleMenu', true);
+      this.$store.commit('toggleMenu');
     },
   },
 };
