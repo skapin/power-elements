@@ -43,7 +43,7 @@ export default {
   data: function () {
     return {
       password: '',
-      user: ''
+      user: this.$route.query.user
     }
   },
   methods: {
@@ -93,7 +93,6 @@ export default {
 }
 .login-logo {
   width: 40vh;
-  margin-left: 2vw;
   margin-bottom: 20px;
 }
 .button-page {

@@ -47,7 +47,7 @@ export default {
         .createAccount(this.password)
         .then((result) => {
           this.makeToast('Votre identifiant est: ' + result.data.Username)
-          this.goTo('loginPage')
+          this.$router.push({name: 'loginPage', query: { user: result.data.Username } });
         })
         .catch(() => {
           this.makeToast('Erreur lors de la création de l\'utilisateur')
@@ -73,7 +73,6 @@ export default {
 }
 .login-logo {
   width: 40vh;
-  margin-left: 2vw;
   margin-bottom: 20px;
 }
 .button-page {
