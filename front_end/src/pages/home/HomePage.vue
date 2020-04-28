@@ -93,7 +93,8 @@ export default {
   min-height: calc(100vh - 44px);
 }
 .validation-button {
-  width: 80%;
+  width: 50%;
+  min-width: 300px;
   margin: 0 auto;
   margin-bottom: 1%;
   margin-top: 3%;
