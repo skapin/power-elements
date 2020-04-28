@@ -28,9 +28,6 @@ export default {
   text-align: center;
   margin-bottom: 20px;
 }
-img {
-  max-width: 150px;
-}
 ons-list-item {
   cursor: pointer;
 }
