@@ -55,10 +55,10 @@ export default {
     },
     makeToast (text, append = false) {
       // eslint-disable-next-line
-      let toast = this.$toasted.error(text, {
+      let toast = this.$toasted.info(text, {
         theme: 'bubble',
         position: 'bottom-right',
-        duration: 5000
+        duration: 15000
       })
     }
   },

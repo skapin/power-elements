@@ -64,7 +64,7 @@ class Response(Base):
     __tablename__ = 'response'
 
     uniqid = Column(String(36), primary_key=True)
-    value = Column(Boolean, nullable=False)
+    value = Column(Integer)
     created_at = Column(DateTime, unique=False, default=datetime.datetime.utcnow)
 
     question_id = Column(String(36), ForeignKey('question.uniqid', onupdate="CASCADE"))
