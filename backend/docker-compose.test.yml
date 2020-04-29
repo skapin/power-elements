@@ -4,7 +4,6 @@ services:
     build: .
     volumes:
       - ./src:/usr/src/app
-    container_name: covid_app_test
     env_file: .env-test
     command: ["test"]
     links:

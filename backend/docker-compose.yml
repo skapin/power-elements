@@ -6,7 +6,6 @@ services:
       - ./src:/usr/src/app
     ports:
       - 9019:9009
-    container_name: covid_app_dev
     env_file: .env-dev
     command: ["dev"]
     links:
@@ -14,7 +13,6 @@ services:
     restart: always
   postgres:
     image: postgres
-    container_name: covid_postgres_dev
     env_file: .env-dev
     restart: always
     volumes:
