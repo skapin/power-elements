@@ -55,11 +55,7 @@ Deploy Prod:
     # - ssh $PRODUCTION_USER@$PRODUCTION_SERVER -o SendEnv="CI_COMMIT_REF_SLUG" "mkdir -p ~/docker/project/$CI_COMMIT_REF_SLUG"
     - ssh $PRODUCTION_USER@$PRODUCTION_SERVER -o SendEnv="CI_COMMIT_SHA" "cd ~kombos/covid-aio/ && git stash && git fetch && git checkout $CI_COMMIT_SHA"
     # - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd ~numii/kanban/"
-<<<<<<< HEAD
-    - scp -r web/dist $PRODUCTION_USER@$PRODUCTION_SERVER:/home/kombos/covid-aio/web/
-=======
-    - scp -r web/cordova/www $PRODUCTION_USER@$PRODUCTION_SERVER:~kombos/covid-aio/web/
->>>>>>> dev
+    - scp -r web/cordova/www $PRODUCTION_USER@$PRODUCTION_SERVER:/home/kombos/covid-aio/web/
     - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd ~kombos/codiv-aio/ && docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml down && docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml pull && docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml up --build --force-recreate -d"
     # - sleep 20
     # - isup=`curl https://sm-be.aiotools.ovh/status/is_up`
