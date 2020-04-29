@@ -4,6 +4,7 @@ services:
     build: .
     volumes:
       - ./src:/usr/src/app
+    container_name: covid_app_test
     env_file: .env-test
     command: ["test"]
     links:
@@ -15,7 +16,7 @@ services:
     env_file: .env-test
     restart: always
     volumes:
-      - postgresdata:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
 volumes:
   postgresdata:
 
