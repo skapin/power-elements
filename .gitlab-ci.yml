@@ -30,7 +30,7 @@ Build Frontend:
     - web/node_modules/
   before_script:
     - cd web/
-    - '[[ -d dist/ ]] && rm -R dist/'
+    - '[[ -d cordova/www/ ]] && rm -R cordova/www/'
     - npm install
   script:
     - echo "----> Start Script"
@@ -38,7 +38,7 @@ Build Frontend:
     - echo "---> End Script"
   artifacts:
     paths:
-      - web/dist/
+      - web/cordova/www/
     expire_in: 1 day
 Deploy Prod:
   stage: deploy
@@ -57,6 +57,7 @@ Deploy Prod:
     # - ssh $PRODUCTION_USER@$PRODUCTION_SERVER -o SendEnv="CI_COMMIT_REF_SLUG" "mkdir -p ~/docker/project/$CI_COMMIT_REF_SLUG"
     - ssh $PRODUCTION_USER@$PRODUCTION_SERVER -o SendEnv="CI_COMMIT_SHA" "cd ~kombos/covidaio/ && git stash && git fetch && git checkout $CI_COMMIT_SHA"
     # - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd ~numii/kanban/"
+    - echo "scp -r web/cordova/www $PRODUCTION_USER@$PRODUCTION_SERVER:/home/kombos/covidaio/web/"
     - scp -r web/cordova/www $PRODUCTION_USER@$PRODUCTION_SERVER:/home/kombos/covidaio/web/
     - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd ~kombos/codiv-aio/ && docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml down && docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml pull && docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml up --build --force-recreate -d"
     # - sleep 20
