@@ -9,6 +9,8 @@ services:
     links:
       - postgres:postgres
     restart: always
+    ports:
+      - 9009:9009
   postgres:
     image: postgres
     container_name: covid_postgres_test
