@@ -9,3 +9,5 @@ while [[ $res != *"1 row"* ]];do
   echo $res
 done
 sleep 20
+
+#
