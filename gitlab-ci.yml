@@ -8,15 +8,15 @@ Backend Test:
   only:
     - master
   before_script:
-    - docker-compose -f backend/tests/docker-compose.test.yml down
-    - docker-compose -f backend/tests/docker-compose.test.yml pull
-    - docker-compose -f backend/tests/docker-compose.test.yml up --build --force-recreate -d
-    - ./backend/tests/wait-db.sh
+    - docker-compose -f backend/docker-compose.test.yml down
+    - docker-compose -f backend/docker-compose.test.yml pull
+    - docker-compose -f backend/docker-compose.test.yml up --build --force-recreate -d
+    - ./backend/src/tests/wait-db.sh
   script:
-    - cd backend/tests/
+    - cd backend/src/tests/
     - docker-compose up --exit-code-from app
   after_script:
-    - docker-compose -f backend/tests/docker-compose.test.yml down
+    - docker-compose -f backend/src/tests/docker-compose.test.yml down
     - echo "---> End cleaning"
 
 Build Frontend:

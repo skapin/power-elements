@@ -1,0 +1,12 @@
+To run test, execute the following command in the test folder :
+
+    sudo docker-compose up
+
+and check output for error
+
+
+OK :
+========================== 30 passed in 2.74 seconds ===========================
+
+ERROR :
+====================== 1 failed, 4 passed in 0.31 seconds ======================
