@@ -2,7 +2,6 @@ version: '3'
 services:
   app:
     build: .
-    volumes:
     env_file: .env-test
     command: ["dev"]
     links:
