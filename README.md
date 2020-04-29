@@ -1,4 +1,4 @@
-# Dev
+# Dev :
 
 - cd backend
 - docker-compose up -d
@@ -7,7 +7,7 @@
 - npm run dev
 - browse localhost on given {port}
 
-# Production
+# Production :
 
 docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml up
 
