@@ -1,0 +1,66 @@
+stages:
+  - test
+  - build
+  - deploy
+
+Backend Test:
+  stage: test
+  only:
+    - master
+  before_script:
+    - docker-compose -f backend/tests/docker-compose.test.yml down
+    - docker-compose -f backend/tests/docker-compose.test.yml pull
+    - docker-compose -f backend/tests/docker-compose.test.yml up --build --force-recreate -d
+    - ./backend/tests/wait-db.sh
+  script:
+    - cd backend/tests/
+    - docker-compose up --exit-code-from app
+  after_script:
+    - docker-compose -f backend/tests/docker-compose.test.yml down
+    - echo "---> End cleaning"
+
+Build Frontend:
+  stage: build
+  only:
+    - master
+  image: node:8.11.3
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+    - web/node_modules/
+  before_script:
+    - cd web/
+    - '[[ -d dist/ ]] && rm -R dist/'
+    - npm install
+  script:
+    - echo "----> Start Script"
+    - npm run build
+    - echo "---> End Script"
+  artifacts:
+    paths:
+      - web/dist/
+    expire_in: 1 day
+Deploy Prod:
+  stage: deploy
+  only:
+    - master
+  script:
+    - echo "---> Start Deploy script"
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh
+    - eval $(ssh-agent -s)
+    - ls web/
+    - 'echo -e "Host *\nStrictHostKeyChecking no\n" > ~/.ssh/config'
+    - ssh-add <(echo "$PRODUCTION_PRIVATE_KEY")
+    # - ssh $PRODUCTION_USER@$PRODUCTION_SERVER -o SendEnv="CI_COMMIT_REF_SLUG" "mkdir -p ~/docker/project/$CI_COMMIT_REF_SLUG"
+    - ssh $PRODUCTION_USER@$PRODUCTION_SERVER -o SendEnv="CI_COMMIT_SHA" "cd ~covid-aio/ && git stash && git fetch && git checkout $CI_COMMIT_SHA"
+    # - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd ~numii/kanban/"
+    - scp -r web/dist $PRODUCTION_USER@$PRODUCTION_SERVER:/home/covid-aio/web/
+    - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd ~codiv-aio/ && docker-compose -f docker-compose.prod.yml down && docker-compose -f docker-compose.prod.yml pull && docker-compose -f docker-compose.prod.yml up --build -d"
+    # - sleep 20
+    # - isup=`curl https://sm-be.aiotools.ovh/status/is_up`
+    # - echo $isup
+    # - '[[ $isup != *"true"* ]] && exit 9'
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: https://strawpoll.aiotools.ovh/#/
