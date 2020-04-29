@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: account; Type: TABLE; Schema: public; Owner: aiosuperuserstrike
+-- Name: account; Type: TABLE; Schema: public; Owner: aiosuperusercovid
 --
 
 CREATE TABLE public.account (
@@ -32,10 +32,10 @@ CREATE TABLE public.account (
 );
 
 
-ALTER TABLE public.account OWNER TO aiosuperuserstrike;
+ALTER TABLE public.account OWNER TO aiosuperusercovid;
 
 --
--- Name: question; Type: TABLE; Schema: public; Owner: aiosuperuserstrike
+-- Name: question; Type: TABLE; Schema: public; Owner: aiosuperusercovid
 --
 
 CREATE TABLE public.question (
@@ -45,10 +45,10 @@ CREATE TABLE public.question (
 );
 
 
-ALTER TABLE public.question OWNER TO aiosuperuserstrike;
+ALTER TABLE public.question OWNER TO aiosuperusercovid;
 
 --
--- Name: response; Type: TABLE; Schema: public; Owner: aiosuperuserstrike
+-- Name: response; Type: TABLE; Schema: public; Owner: aiosuperusercovid
 --
 
 CREATE TABLE public.response (
@@ -60,10 +60,10 @@ CREATE TABLE public.response (
 );
 
 
-ALTER TABLE public.response OWNER TO aiosuperuserstrike;
+ALTER TABLE public.response OWNER TO aiosuperusercovid;
 
 --
--- Data for Name: account; Type: TABLE DATA; Schema: public; Owner: aiosuperuserstrike
+-- Data for Name: account; Type: TABLE DATA; Schema: public; Owner: aiosuperusercovid
 --
 
 COPY public.account (uniqid, password, name, created_at) FROM stdin;
@@ -71,7 +71,7 @@ COPY public.account (uniqid, password, name, created_at) FROM stdin;
 
 
 --
--- Data for Name: question; Type: TABLE DATA; Schema: public; Owner: aiosuperuserstrike
+-- Data for Name: question; Type: TABLE DATA; Schema: public; Owner: aiosuperusercovid
 --
 
 COPY public.question (uniqid, name, created_at) FROM stdin;
@@ -79,7 +79,7 @@ COPY public.question (uniqid, name, created_at) FROM stdin;
 
 
 --
--- Data for Name: response; Type: TABLE DATA; Schema: public; Owner: aiosuperuserstrike
+-- Data for Name: response; Type: TABLE DATA; Schema: public; Owner: aiosuperusercovid
 --
 
 COPY public.response (uniqid, value, created_at, question_id, account_id) FROM stdin;
@@ -87,7 +87,7 @@ COPY public.response (uniqid, value, created_at, question_id, account_id) FROM s
 
 
 --
--- Name: account account_name_key; Type: CONSTRAINT; Schema: public; Owner: aiosuperuserstrike
+-- Name: account account_name_key; Type: CONSTRAINT; Schema: public; Owner: aiosuperusercovid
 --
 
 ALTER TABLE ONLY public.account
@@ -95,7 +95,7 @@ ALTER TABLE ONLY public.account
 
 
 --
--- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: aiosuperuserstrike
+-- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: aiosuperusercovid
 --
 
 ALTER TABLE ONLY public.account
@@ -103,7 +103,7 @@ ALTER TABLE ONLY public.account
 
 
 --
--- Name: question question_pkey; Type: CONSTRAINT; Schema: public; Owner: aiosuperuserstrike
+-- Name: question question_pkey; Type: CONSTRAINT; Schema: public; Owner: aiosuperusercovid
 --
 
 ALTER TABLE ONLY public.question
@@ -111,7 +111,7 @@ ALTER TABLE ONLY public.question
 
 
 --
--- Name: response response_pkey; Type: CONSTRAINT; Schema: public; Owner: aiosuperuserstrike
+-- Name: response response_pkey; Type: CONSTRAINT; Schema: public; Owner: aiosuperusercovid
 --
 
 ALTER TABLE ONLY public.response
@@ -119,7 +119,7 @@ ALTER TABLE ONLY public.response
 
 
 --
--- Name: response response_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: aiosuperuserstrike
+-- Name: response response_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: aiosuperusercovid
 --
 
 ALTER TABLE ONLY public.response
@@ -127,7 +127,7 @@ ALTER TABLE ONLY public.response
 
 
 --
--- Name: response response_question_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: aiosuperuserstrike
+-- Name: response response_question_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: aiosuperusercovid
 --
 
 ALTER TABLE ONLY public.response
