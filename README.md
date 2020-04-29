@@ -9,5 +9,5 @@
 
 # Production
 
-docker-compose -f backend/doker-compose.pord.yml -f web/docker-compose.prod.yml up
+docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml up
 
