@@ -1,0 +1,22 @@
+version: '2'
+services:
+  app:
+    build: .
+    volumes:
+      - ./src:/usr/src/app
+    ports:
+      - 9019:9009
+    env_file: .env-test
+    command: ["test"]
+    links:
+      - postgres:postgres
+    restart: always
+  postgres:
+    image: postgres
+    env_file: .env-test
+    restart: always
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+volumes:
+  postgresdata:
+
