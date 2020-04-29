@@ -49,7 +49,9 @@ Deploy Prod:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - mkdir -p ~/.ssh
     - eval $(ssh-agent -s)
-    - ls web/
+    - ls web/cordova/www
+    - echo '==> ENV:'
+    - echo $PRODUCTION_USER@$PRODUCTION_SERVER
     - 'echo -e "Host *\nStrictHostKeyChecking no\n" > ~/.ssh/config'
     - ssh-add <(echo "$PRODUCTION_PRIVATE_KEY")
     # - ssh $PRODUCTION_USER@$PRODUCTION_SERVER -o SendEnv="CI_COMMIT_REF_SLUG" "mkdir -p ~/docker/project/$CI_COMMIT_REF_SLUG"
