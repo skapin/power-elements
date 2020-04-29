@@ -56,7 +56,7 @@ Deploy Prod:
     - ssh $PRODUCTION_USER@$PRODUCTION_SERVER -o SendEnv="CI_COMMIT_SHA" "cd ~kombos/covidaio/ && git stash && git fetch && git checkout $CI_COMMIT_SHA"
     # - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd ~numii/kanban/"
     - scp -r web/cordova/www $PRODUCTION_USER@$PRODUCTION_SERVER:/home/kombos/covidaio/web/cordova/
-    - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd ~kombos/covidaio/ && docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml down && docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml pull && docker-compose -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml up --build --force-recreate -d"
+    - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd ~kombos/covidaio/ && docker-compose-base -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml down && docker-compose-base -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml pull && docker-compose-base -f backend/docker-compose.prod.yml -f web/docker-compose.prod.yml up --build --force-recreate -d"
     # - sleep 20
     # - isup=`curl https://sm-be.aiotools.ovh/status/is_up`
     # - echo $isup
