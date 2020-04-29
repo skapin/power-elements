@@ -2,10 +2,8 @@ version: '3'
 services:
   app:
     build: .
-    volumes:
-      - ./src:/usr/src/app
     env_file: .env-test
-    command: ["test"]
+    command: ["dev"]
     links:
       - postgres:postgres
     restart: always
