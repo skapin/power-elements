@@ -69,7 +69,7 @@ export default {
       let data = { 'username': this.user, 'password': this.password}
       this.$store.dispatch('Login', data).then(() => {
         this.loading = false
-        this.$toasted.info('Connexion avec succès !')
+        this.makeToast('Connexion avec succès !')
         this.goTo('home')
       }).catch((error) => {
         this.loading = false
