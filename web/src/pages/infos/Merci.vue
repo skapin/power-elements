@@ -2,13 +2,10 @@
   <v-ons-page>
     <navbar returnPath="home"></navbar>
     <ons-card class="mycard">
-        <div class="title">
-            <h1>Merci !</h1>
-        </div>
         <div class="content">
           <p>
           </p>
-            <img src="../../assets/thank_you.png" title="Merci">
+            <img class="thank_img" src="../../assets/thank_you.png" title="Merci">
         </div>
     </ons-card>
   </v-ons-page>
@@ -77,9 +74,13 @@ export default {
   cursor: pointer;
 }
 .mycard {
-  max-width: 200px;
-  margin: 100px auto;
+  max-width: 90vw;
+  margin: 200px auto;
   text-align: center;
+}
+
+.thank_img {
+  width: 100%;
 }
 
 </style>
