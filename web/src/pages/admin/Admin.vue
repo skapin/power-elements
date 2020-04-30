@@ -67,7 +67,7 @@ export default {
           })
         );
 
-        // result.data.map(el =>
+        // result.map(el =>
         //   this.globalSeries.push({
         //     name: el.question_name,
         //     data: el.results.map(item => ({
