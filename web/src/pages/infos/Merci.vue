@@ -1,7 +1,7 @@
 <template>
   <v-ons-page>
     <navbar returnPath="home"></navbar>
-    <ons-card>
+    <ons-card class="mycard">
         <div class="title">
             <h1>Merci !</h1>
         </div>
@@ -72,28 +72,14 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.bgno {
-  background: inherit;
-}
-
-.page-title {
-  text-align: center;
-}
 
 .btn:hover {
   cursor: pointer;
 }
-.home-page {
-  background: linear-gradient(#61d7ff, #2667a8);
-  max-width: 1200px;
-  margin: auto;
-  min-height: calc(100vh - 44px);
+.mycard {
+  max-width: 200px;
+  margin: 100px auto;
+  text-align: center;
 }
-.validation-button {
-  width: 50%;
-  min-width: 300px;
-  margin: 0 auto;
-  margin-bottom: 1%;
-  margin-top: 3%;
-}
+
 </style>
