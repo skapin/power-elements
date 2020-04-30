@@ -7,7 +7,7 @@
                 :questionId="row.uniqid"
                 :question="row.name"/>
       </div>
-      <div class="validation-button">
+      <div class="validation-button btn">
         <v-ons-button 
           @click="sendResponses()" 
           :disabled="validateDisabled || loading" 

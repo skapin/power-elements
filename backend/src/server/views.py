@@ -1,6 +1,8 @@
+import json
 import logging
 from flask import jsonify, Blueprint, abort
 from server.extensions import rest_api
+
 from server.api.auth.login import Login
 from server.api.responses.responses_collection import ResponsesCollection
 from server.api.questions.init_questions import InitQuestions
@@ -9,6 +11,7 @@ from server.api.auth.signup import Signup
 from common.utils.security import authentication_required
 from common.db.base import Database
 from db.models import Account, Response
+from server.api.stats.stats import Stats
 
 LOG = logging.getLogger(__name__)
 
@@ -19,7 +22,7 @@ rest_api.add_resource(InitQuestions, '/api/questions/load', methods=['GET'])
 rest_api.add_resource(QuestionsCollection, '/api/questions', methods=['GET', 'DELETE'])
 rest_api.add_resource(Signup, '/api/users/signup', methods=['POST'])
 rest_api.add_resource(ResponsesCollection, '/api/responses', methods=['POST'])
-
+rest_api.add_resource(Stats, '/api/stats', methods=['GET'])
 
 @blueprint.route('/status/is_up', methods=['GET'])
 def is_up():

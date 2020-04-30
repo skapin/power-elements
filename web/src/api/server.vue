@@ -18,7 +18,12 @@ function clearUserInfo() {
   return http.delete('/api/user_info')
 }
 
+function getStats () {
+  return http.get('/api/stats')
+}
+
 export default {
+  getStats,
   getAllQuestions,
   createAccount,
   sendResponsesApi,
