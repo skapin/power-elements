@@ -18,7 +18,12 @@ function sendResponsesApi(jwt, responses) {
   return http.post('/api/responses', {'jwt': jwt, 'responses': JSON.stringify(responses)})
 }
 
+function getStats () {
+  return http.get('/api/stats')
+}
+
 export default {
+  getStats,
   getAllQuestions,
   createAccount,
   login,
