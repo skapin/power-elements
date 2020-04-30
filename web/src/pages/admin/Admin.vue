@@ -124,7 +124,6 @@ export default {
 .admin-page {
   max-width: 1200px;
   margin: auto;
-  min-height: calc(100vh - 44px);
 }
 .chart-display {
   margin: 20px auto;
