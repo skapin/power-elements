@@ -9,6 +9,12 @@
           </div>
           <div class="center">Infos légales</div>
         </v-ons-list-item>
+        <v-ons-list-item modifier="chevron" tappable @click="goTo('politiqueConfidentialite')">
+          <div class="left">
+            <v-ons-icon fixed-width icon="fa-info"></v-ons-icon>
+          </div>
+          <div class="center">Confidentialité</div>
+        </v-ons-list-item>
         <v-ons-list-item modifier="chevron" tappable @click="signout()">
           <div class="left">
             <v-ons-icon fixed-width icon="fa-sign-out"></v-ons-icon>

@@ -6,9 +6,9 @@
             <h1>Merci !</h1>
         </div>
         <div class="content">
-            <p>
-                Belle journée !
-            </p>
+          <p>
+          </p>
+            <img src="../../assets/thank_you.png" title="Merci">
         </div>
     </ons-card>
   </v-ons-page>
