@@ -54,20 +54,20 @@ export default {
             }
           },
           xaxis: {
-            categories: result.data.flatMap(el =>
+            categories: result.flatMap(el =>
               el.results.map(cat => cat.created_at.substring(5, 10))
             )
           }
         };
 
-        result.data.map(el =>
+        result.map(el =>
           this.globalSeries.push({
             name: el.question_name,
             data: el.results.map(item => item.value)
           })
         );
 
-        // result.data.map(el =>
+        // result.map(el =>
         //   this.globalSeries.push({
         //     name: el.question_name,
         //     data: el.results.map(item => ({
@@ -77,7 +77,7 @@ export default {
         //   })
         // );
 
-        result.data.forEach(element => {
+        result.forEach(element => {
           this.options.push({
             legend: {
               show: true,
