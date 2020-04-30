@@ -11,7 +11,6 @@ const http = axios.create({
 })
 
 http.interceptors.request.use(config => {
-	console.log(store.getters)
   if (store.getters.token) {
     config.headers['Authorization'] = 'Bearer ' + store.getters.token
   }
@@ -39,7 +38,6 @@ http.interceptors.response.use(
     }
   },
   error => {
-    console.log('err ' + error)// for debug
     /* Message({
       message: error.message,
       type: 'error',

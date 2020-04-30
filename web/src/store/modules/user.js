@@ -40,7 +40,10 @@ const user = {
           const data = response
           Auth.saveToken(data.token)
           commit('SET_TOKEN', data.token)
-          commit('SET_PAYLOAD', Auth.parseJwt(data.token))
+          let payload = Auth.parseJwt(data.token)
+          commit('SET_PAYLOAD', payload)
+          console.log(payload)
+          commit('SET_NAME', payload.name)
           commit('SET_LOGGED', data.login)
           if (data.login) {
             resolve()

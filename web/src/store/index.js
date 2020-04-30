@@ -2,23 +2,24 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import userInfo from './modules/userInfo';
 import user from './modules/user';
+import app from './modules/app'
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   modules: {
     userInfo,
     user,
+    app,
   },
   state: {
     menuIsOpen: false,
-    currentArea: { id: 1, name: 'top!' },
-    username:''
   },
 
   getters: {
     getMenuIsOpen: (state) => state.menuIsOpen,
-    token: (state) => state.user.token
+    token: (state) => state.user.token,
+    user: (state) => state.user.payload
   },
 
   mutations: {
@@ -29,11 +30,7 @@ export default new Vuex.Store({
         state.menuIsOpen = !state.menuIsOpen;
       }
     },
-    setArea(state, data) {
-      state.currentArea = data;
-    },
-    setUsernameArea(state, data) {
-      state.username = data;
-    },
   },
 });
+
+export default store

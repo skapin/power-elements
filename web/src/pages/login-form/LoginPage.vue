@@ -43,13 +43,14 @@
 <script>
 import Navbar from '../../components/navbar/Navbar';
 import server from './../../api/server.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   props: ['toggleMenu', 'pageStack'],
   name: 'login-page',
   data: function () {
     return {
-      user: this.$route.query.user,
+      user: '',
       password: '',
       loading: false
     }
@@ -78,7 +79,19 @@ export default {
       })
     }
   },
+  computed: {
+    getUser () {
+      return this.$store.getters.user
+    }
+  },
   mounted: function () {
+    if (this.$route.query.user) {
+      this.user = this.$route.query.user
+    } else {
+      if ( this.getUser ) {
+        this.user = this.getUser
+      }
+    }
   },
   components: { Navbar }
   // eslint-disable-next-line

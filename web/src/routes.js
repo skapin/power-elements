@@ -21,3 +21,5 @@ export default [
 
 
 ];
+
+export const whiteList = ['/login-page', '/user-page', '/account-creation-page']

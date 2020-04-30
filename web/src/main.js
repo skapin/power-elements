@@ -31,6 +31,16 @@ const router = new VueRouter({
   routes, // short for `routes: routes`
 });
 
+router.beforeEach((to, from, next) => {
+  store.commit('setLoading', true)
+  next()
+})
+
+router.afterEach((to, from) => {
+  store.commit('setLoading', false)
+})
+store.dispatch('Initialize')
+
 Vue.mixin({
   data () {
     return {
