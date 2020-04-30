@@ -5,7 +5,7 @@
       <apexchart class="chart-display" type="line" :options="globalOptions" :series="globalSeries"></apexchart>
 
       <div v-for="stat in stats" v-bind:key="stat.index">
-        <hr v-if="stat.index!==0" />
+        <hr />
         <apexchart
           class="chart-display"
           type="line"
