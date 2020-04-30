@@ -28,6 +28,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import store from '../../store';
+import logout from '../../utils/auth.js'
 
 export default {
   name: 'side-menu',
@@ -42,8 +43,9 @@ export default {
   }),
   methods: {
     signout() {
-        window.localStorage.setItem('jwtToken', '')
-        this.goTo('loginPage')
+      this.$store.dispatch('LogOut').then(() => {
+        location.reload()
+      })
     }
   },
 };

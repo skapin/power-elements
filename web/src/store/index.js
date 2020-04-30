@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import userInfo from './modules/userInfo';
+import user from './modules/user';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     userInfo,
+    user,
   },
   state: {
     menuIsOpen: false,
@@ -16,6 +18,7 @@ export default new Vuex.Store({
 
   getters: {
     getMenuIsOpen: (state) => state.menuIsOpen,
+    token: (state) => state.user.token
   },
 
   mutations: {

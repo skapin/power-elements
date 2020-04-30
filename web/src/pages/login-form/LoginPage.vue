@@ -25,7 +25,14 @@
             <v-ons-button class="btn" modifier="large" @click="goTo('accountCreationPage')">Pas de compte ?</v-ons-button>
           </v-ons-col>
           <v-ons-col>
-            <v-ons-button class="btn" modifier="large" @click="validatePassword()">Se connecter</v-ons-button>
+            <v-ons-button 
+              :disabled="loading" 
+              class="btn" 
+              modifier="large" 
+              @click="handleLogin()"
+            >
+              Se connecter
+            </v-ons-button>
           </v-ons-col>
         </v-ons-row>
 
@@ -42,26 +49,12 @@ export default {
   name: 'login-page',
   data: function () {
     return {
+      user: this.$route.query.user,
       password: '',
-      user: this.$route.query.user
+      loading: false
     }
   },
   methods: {
-    validatePassword () {
-      server
-        .login(this.user, this.password)
-        .then(result => {
-          if (result.data) {
-            this.saveLoggedin(result.data)
-            this.goTo('home')
-          } else {
-            this.makeToast('Le mot de passe saisi est incorrect')
-          }
-        })
-        .catch(() => {
-          this.makeToast('Le mot de passe saisi est incorrect')
-        })
-    },
     makeToast (text, append = false) {
       // eslint-disable-next-line
       let toast = this.$toasted.info(text, {
@@ -70,17 +63,22 @@ export default {
         duration: 5000
       })
     },
-    getIfLoggedIn () {
-      this.clientRegistered =
-        window.localStorage.getItem('jwtToken') !== ''
-    },
-    saveLoggedin (data) {
-      window.localStorage.setItem('jwtToken', data.token)
-      this.$store.commit('setInfo', {'Username': data.username})
+    handleLogin () {
+      this.$toasted.clear()
+      this.loading = true
+      let data = { 'username': this.user, 'password': this.password}
+      this.$store.dispatch('Login', data).then(() => {
+        this.loading = false
+        this.$toasted.info('Connexion avec succès !')
+        this.goTo('home')
+      }).catch((error) => {
+        this.loading = false
+        this.password = ''
+        this.$toasted.error('Mauvais compte ou mot de passe ')
+      })
     }
   },
   mounted: function () {
-    this.getIfLoggedIn()
   },
   components: { Navbar }
   // eslint-disable-next-line

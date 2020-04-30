@@ -26,7 +26,7 @@
           <v-ons-list-item expandable :expanded.sync="isExpanded">
             Je veux supprimer mes données, comment faire ?
             <div class="expandable-content">Cette action est possible mais irréversible. Pour cela 
-              <ons-button>Cliquez ici</ons-button>
+              <ons-button @click="removeUserData">Cliquez ici</ons-button>
             </div>
           </v-ons-list-item>
         </v-ons-list>
@@ -46,6 +46,7 @@
 
 <script>
 import Navbar from '../../components/navbar/Navbar'
+import server from './../../api/server.vue'
 
 export default {
   name: 'politique-confidentialite',
@@ -58,6 +59,22 @@ export default {
     }
   },
   methods: {
+    removeUserData () {
+      server.clearUserInfo().then(result => {
+        this.$store.dispatch('LogOut').then(() => {
+          location.reload()
+        })
+
+      }).catch((err) => {
+        if (err.response.status == 404) {
+          let toast = this.$toasted.error('Votre compte est déjà supprimé...', {
+            theme: 'bubble',
+            position: 'bottom-center',
+            duration: 10000
+          })
+        }
+      })
+    }
    
   },
   mounted: function () {

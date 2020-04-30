@@ -1,7 +1,7 @@
 const state = {
   info: {
-    name: 'ehama',
-    ID: 'hoshinari',
+    name: 'foo',
+    ID: 'barr',
   },
 };
 
@@ -15,7 +15,6 @@ const actions = {
 
 const mutations = {
     setInfo (state, params) {
-        console.log(params)
         state.info = {'name': params.Username, 'ID': params.Username}
     }
 

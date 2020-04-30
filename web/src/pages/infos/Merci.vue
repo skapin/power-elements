@@ -41,7 +41,7 @@ export default {
     },
     getAppQuestions () {
       server.getAllQuestions().then((result) => {
-        this.questionsList = result.data
+        this.questionsList = result
         this.initResponses()
       })
     },
