@@ -40,7 +40,7 @@ export default {
   methods: {
     getStats() {
       server.getStats().then(result => {
-        this.stats = result.data;
+        this.stats = result
 
         this.globalOptions = {
           legend: {
