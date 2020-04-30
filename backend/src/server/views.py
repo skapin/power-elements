@@ -14,6 +14,7 @@ from server.api.responses.responses_collection import ResponsesCollection
 from server.api.questions.init_questions import InitQuestions
 from server.api.questions.questions_collection import QuestionsCollection
 from server.api.auth.signup import Signup
+from server.api.stats.stats import Stats
 
 LOG = logging.getLogger(__name__)
 
@@ -23,7 +24,9 @@ rest_api.add_resource(Login, '/api/users/login', methods=['POST'])
 rest_api.add_resource(InitQuestions, '/api/questions/load', methods=['GET'])
 rest_api.add_resource(QuestionsCollection, '/api/questions', methods=['GET', 'DELETE'])
 rest_api.add_resource(Signup, '/api/users/signup', methods=['POST'])
-rest_api.add_resource(ResponsesCollection, '/api/responses', methods=['POST'])
+rest_api.add_resource(ResponsesCollection, '/api/responses', methods=['POST']),
+rest_api.add_resource(Stats, '/api/stats', methods=['GET'])
+
 
 
 @blueprint.route('/status/is_up', methods=['GET'])
