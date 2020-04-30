@@ -4,7 +4,7 @@
     <div class="admin-page" v-if="options">
       <apexchart class="chart-display" type="line" :options="globalOptions" :series="globalSeries"></apexchart>
 
-      <div v-for="stat in stats" v-bind:key="stat.index">
+      <!-- <div v-for="stat in stats" v-bind:key="stat.index">
         <hr />
         <apexchart
           class="chart-display"
@@ -12,7 +12,7 @@
           :options="options[stat.index]"
           :series="series[stat.index]"
         ></apexchart>
-      </div>
+      </div> -->
     </div>
   </v-ons-page>
 </template>
