@@ -3,8 +3,6 @@
     <navbar returnPath="home"></navbar>
     <ons-card class="mycard">
         <div class="content">
-          <p>
-          </p>
             <img class="thank_img" src="../../assets/thank_you.png" title="Merci">
         </div>
     </ons-card>
