@@ -2,7 +2,7 @@
   <v-ons-toolbar class="home-toolbar">
     <div v-if="navType=='menu'" class="left">
       <v-ons-toolbar-button @click="toggleMenu()" class="btn">
-        <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
+        <v-ons-icon icon="md-menu"></v-ons-icon>
       </v-ons-toolbar-button>
     </div>
     <div v-else-if="navType=='back'" class="left">

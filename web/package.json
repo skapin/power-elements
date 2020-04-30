@@ -23,7 +23,7 @@
     "apexcharts": "^3.19.0",
     "axios": "^0.19.2",
     "element-ui": "^2.3.4",
-    "onsenui": "~2.9.0",
+    "onsenui": "^2.10.10",
     "vue": "^2.3.3",
     "vue-apexcharts": "^1.5.3",
     "vue-axios": "^2.1.1",
