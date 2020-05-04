@@ -2,22 +2,22 @@
   <v-ons-card class="card">
     <div class="content">
       <v-ons-row>
-        <v-ons-col width="90%" vertical-align="center">
-          <h1>{{ question }}</h1>
+        <v-ons-col width="80%" vertical-align="center">
+          <h3>{{ question }}</h3>
         </v-ons-col>
-        <v-ons-col width="10%" vertical-align="center">
+        <v-ons-col width="20%" vertical-align="center">
           <!-- <v-ons-range @click="clickAnswer()" v-model="value" style="width: 90%;"></v-ons-range> -->
           <v-ons-switch @click="clickAnswer()" input-id="switch1"
-            v-model="value"
+            v-model="value" class="float-right"
           ></v-ons-switch>
         </v-ons-col>
       </v-ons-row>
       <!-- <v-ons-row>
         <v-ons-col vertical-align="center"> -->
-          <v-ons-card class="call-card" >
-            <div class="content">
-          Vous pouvez appeler votre correspondant dans l’entreprise pour échanger avec lui et prendre une décision ensemble du choix qui est fait pour la journée
-          <a href="tel:0681786159">Appeler</a>
+          <v-ons-card class="call-card" v-show="displayCallButton">
+            <div class="content" ><p>
+          Vous pouvez appeler votre correspondant dans l’entreprise pour échanger avec lui et prendre une décision ensemble du choix qui est fait pour la journée:</p>
+          <a href="tel:0681786159"><v-ons-button class="btn">Appeler</v-ons-button></a>
         </div>
       </v-ons-card>
         <!-- </v-ons-col>
@@ -61,6 +61,9 @@ export default{
 .call-card {
  background-color: #ffd175;
 }
+.btn:hover {
+  cursor: pointer;
+}
 .card {
   width: 80%;
   margin: 0 auto;
@@ -73,5 +76,8 @@ export default{
   vertical-align: middle;
   /* bring your own prefixes */
   min-width: 273px;
+}
+.float-right {
+  float: right;
 }
 </style>

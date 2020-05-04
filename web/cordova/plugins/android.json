@@ -8,14 +8,14 @@
   },
   "installed_plugins": {
     "cordova-plugin-android-permissions": {
-      "PACKAGE_NAME": "com.aio.strikezone"
+      "PACKAGE_NAME": "com.aio.covid19"
     },
     "cordova-plugin-camera": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
-      "PACKAGE_NAME": "com.aio.strikezone"
+      "PACKAGE_NAME": "com.aio.covid19"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.aio.strikezone"
+      "PACKAGE_NAME": "com.aio.covid19"
     }
   },
   "dependent_plugins": {}

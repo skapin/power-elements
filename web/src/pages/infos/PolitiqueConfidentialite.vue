@@ -6,7 +6,7 @@
           <h1>Notre engagement sur la confidentialité</h1>
       </div>
       <div class="content">
-        <v-ons-list>
+        <v-ons-list class="bubble">
           <v-ons-list-item expandable :expanded.sync="isExpanded">
             Quelles sont les informations enregistrées ?
             <div class="expandable-content">Votre nom de compte anonyme, votre mot de passe chiffré (donc illisible), ainsi que la réponse aux questions avec date.
@@ -15,14 +15,14 @@
           </div>
           </v-ons-list-item>
         </v-ons-list>
-        <v-ons-list>
+        <v-ons-list class="bubble">
           <v-ons-list-item expandable :expanded.sync="isExpanded">
             J'ai peur qu'un tier puisse accède aux données, ou sont elles stockés ?
             <div class="expandable-content">L'application est hébergé sur un serveur dédié à AIO fournit par une société française (Online, groupe Illiad). <br>Le serveur se situe physiquement dans le datacenter 2 (DC2) à Vitry sur Seine 
               (<a href="https://documentation.online.net/fr/dedicated-server/overview/datacenters#scaleway_datacenter_dc2" >Plus d'info)</a></div>
           </v-ons-list-item>
         </v-ons-list>
-        <v-ons-list>
+        <v-ons-list class="bubble">
           <v-ons-list-item expandable :expanded.sync="isExpanded">
             Je veux supprimer mes données, comment faire ?
             <div class="expandable-content">Cette action est possible mais irréversible. Pour cela 
@@ -30,7 +30,7 @@
             </div>
           </v-ons-list-item>
         </v-ons-list>
-        <v-ons-list>
+        <v-ons-list class="bubble">
           <v-ons-list-item expandable :expanded.sync="isExpanded">
             J'ai vu sur internet ou à la TV que l'on pouvait m'identifier et me tracker quand même à cause de l'adresse IP. Est-ce vrai ? Comment ça fonctionne ?
             <div class="expandable-content">
@@ -131,5 +131,8 @@ a {
   margin: 0 auto;
   margin-bottom: 1%;
   margin-top: 3%;
+}
+.bubble {
+  margin-bottom: 5px;
 }
 </style>
