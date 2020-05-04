@@ -151,6 +151,6 @@ v-ons-button {
 
 ons-input{
   width: 50%;
-  min-width: 300px;
+  min-width: 250px;
 }
 </style>
