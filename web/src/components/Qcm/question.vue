@@ -17,9 +17,10 @@
       </v-ons-row>
       <!-- <v-ons-row>
         <v-ons-col vertical-align="center"> -->
-          <v-ons-card class="call-card" v-show="displayCallButton">
+          <v-ons-card class="call-card" >
             <div class="content">
           Vous pouvez appeler votre correspondant dans l’entreprise pour échanger avec lui et prendre une décision ensemble du choix qui est fait pour la journée
+          <a href="tel:0681786159">Appeler</a>
         </div>
       </v-ons-card>
         <!-- </v-ons-col>
