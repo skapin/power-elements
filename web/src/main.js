@@ -11,7 +11,7 @@ import 'onsenui/css/onsenui.css';
 import App from './App';
 import routes from './routes';
 import store from './store';
-import Toasted from 'vue-toasted'
+import Toasted from 'vue-toasted';
 
 import 'onsenui/css/onsen-css-components.css';
 // import '../static/css/onsen-css-components-pink.min.css';
@@ -30,6 +30,16 @@ const router = new VueRouter({
   base: window.location.href,
   routes, // short for `routes: routes`
 });
+
+router.beforeEach((to, from, next) => {
+  store.commit('setLoading', true)
+  next()
+})
+
+router.afterEach((to, from) => {
+  store.commit('setLoading', false)
+})
+store.dispatch('Initialize')
 
 Vue.mixin({
   data () {

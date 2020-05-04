@@ -1,22 +1,21 @@
-version: '2'
+version: '3'
 services:
   app:
     build: .
-    volumes:
-      - ./src:/usr/src/app
-    ports:
-      - 9019:9009
     env_file: .env-test
-    command: ["test"]
+    command: ["dev"]
     links:
       - postgres:postgres
     restart: always
+    ports:
+      - 9009:9009
   postgres:
     image: postgres
+    container_name: covid_postgres_test
     env_file: .env-test
     restart: always
     volumes:
-      - postgresdata:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
 volumes:
   postgresdata:
 

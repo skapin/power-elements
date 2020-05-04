@@ -1,11 +1,9 @@
 import logging
-import csv
 import json
 
-from flask import request, jsonify, abort, Blueprint
+from flask import jsonify, abort
 from flask_restful import Resource, reqparse
-from config.settings import SETTINGS
-from common.utils.security import generate_user_token, extract_payload
+from common.utils.security import authentication_required
 from db.models import Question, Account, Response
 from common.db.base import Database
 from flask_restful_swagger import swagger
@@ -13,51 +11,46 @@ from flask_restful_swagger import swagger
 LOG = logging.getLogger(__name__)
 PARSER = reqparse.RequestParser()
 PARSER.add_argument('responses')
-PARSER.add_argument('jwt')
+
 
 class ResponsesCollection(Resource):
     @swagger.operation(
         notes='Save response inside DB',
         parameters=[
             {
-              "name": "jwt",
-              "description": "jwt to retrieve account",
-              "required": True,
-              "allowMultiple": False,
-              "dataType": "string"
-            },
-            {
-              "name": "responses",
-              "description": "dict that contains answer for every questions",
-              "required": True,
-              "allowMultiple": False,
-              "dataType": "string"
+                "name": "responses",
+                "description": "dict that contains answer for every questions",
+                "required": True,
+                "allowMultiple": False,
+                "dataType": "string"
             }
         ],
         responseMessages=[
             {
-              "code": 200,
-              "message": "Everything went right"
+                "code": 200,
+                "message": "Everything went right"
             },
             {
-              "code": 405,
-              "message": "file not found"
+                "code": 405,
+                "message": "file not found"
             }
         ]
     )
-    def post(self):
+    @authentication_required
+    def post(self, user):
         params = PARSER.parse_args()
         if not params:
             abort(415)
 
         responses = json.loads(params.get('responses', False))
-        LOG.info(responses)
-        decoded_jwt = extract_payload(params.get('jwt', False))
+        decoded_jwt = user
         with Database(auto_commit=True) as db:
             account = db.query(Account).filter_by(uniqid=decoded_jwt['uniqid']).first()
+            if not account:
+                abort(404, 'User account not found')
             for response in responses:
                 reponse = responses[response]
                 actual_question = db.query(Question).filter_by(name=reponse['question']).first()
                 new_response = Response(int(reponse['value']), actual_question, account)
                 db.add(new_response)
-        return jsonify(True)
+        return jsonify(False)

@@ -14,7 +14,14 @@
         </v-ons-row>
         <v-ons-row>
           <v-ons-col>
-            <v-ons-button class="btn" modifier="large" @click="validatePassword()">Créer le compte</v-ons-button>
+            <v-ons-button 
+              class="btn"
+              modifier="large"
+              @click="validatePassword()"
+              :disabled="loading || !password"
+            >
+              Créer le compte
+            </v-ons-button>
           </v-ons-col>
         </v-ons-row>
         </div>
@@ -39,17 +46,22 @@ export default {
   data: function () {
     return {
       password: '',
+      loading: false
     }
   },
   methods: {
     validatePassword () {
+      this.$toasted.clear()
+      this.loading = true
       server
         .createAccount(this.password)
         .then((result) => {
-          this.makeToast('Votre identifiant est: ' + result.data.Username)
-          this.$router.push({name: 'loginPage', query: { user: result.data.Username } });
+          this.loading = false
+          this.makeToast('Votre identifiant est: ' + result.Username)
+          this.$router.push({name: 'loginPage', query: { user: result.Username } });
         })
-        .catch(() => {
+        .catch((err) => {
+          this.loading = false
           this.makeToast('Erreur lors de la création de l\'utilisateur')
         })
     },

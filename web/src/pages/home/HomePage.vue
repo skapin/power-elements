@@ -7,8 +7,14 @@
                 :questionId="row.uniqid"
                 :question="row.name"/>
       </div>
-      <div class="validation-button">
-        <v-ons-button @click="sendResponses()" :disabled="validateDisabled" modifier="large">Valider</v-ons-button>
+      <div class="validation-button btn">
+        <v-ons-button 
+          @click="sendResponses()" 
+          :disabled="validateDisabled || loading" 
+          modifier="large"
+        >
+          Valider
+        </v-ons-button>
       </div>
     </div>
   </v-ons-page>
@@ -29,7 +35,8 @@ export default {
     return {
       qcmAnswers: {},
       questionsList: [],
-      validateDisabled: true
+      validateDisabled: true,
+      loading: false
     }
   },
   methods: {
@@ -44,7 +51,7 @@ export default {
     },
     getAppQuestions () {
       server.getAllQuestions().then((result) => {
-        this.questionsList = result.data
+        this.questionsList = result
         this.initResponses()
       })
     },
@@ -54,10 +61,20 @@ export default {
       });
     },
     sendResponses() {
-      var jwt = window.localStorage.getItem('jwtToken')
-      server.sendResponsesApi(jwt, this.qcmAnswers).then(() => {
+      this.loading = true
+      server.sendResponsesApi(this.qcmAnswers).then(() => {
+        this.loading = false
         this.makeToast('Réponses envoyées ! Merci !')
         this.goTo('merci')
+      }).catch((err) => {
+        this.loading = false
+        if (err.response.status == 404) {
+          let toast = this.$toasted.error('Compte introuvable...', {
+            theme: 'bubble',
+            position: 'bottom-center',
+            duration: 5000
+          })
+        }
       })
     },
     makeToast (text, append = false) {

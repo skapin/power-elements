@@ -3,11 +3,23 @@
     <v-ons-toolbar modifier="transparent"></v-ons-toolbar>
     <v-ons-list-title>Infos</v-ons-list-title>
     <v-ons-list>
+       <v-ons-list-item modifier="chevron" tappable @click="goTo('admin')">
+          <div class="left">
+            <v-ons-icon fixed-width icon="fa-bar-chart"></v-ons-icon>
+          </div>
+          <div class="center">Panel admin</div>
+        </v-ons-list-item>
         <v-ons-list-item modifier="chevron" tappable @click="goTo('infosLegales')">
           <div class="left">
             <v-ons-icon fixed-width icon="fa-info"></v-ons-icon>
           </div>
           <div class="center">Infos légales</div>
+        </v-ons-list-item>
+        <v-ons-list-item modifier="chevron" tappable @click="goTo('politiqueConfidentialite')">
+          <div class="left">
+            <v-ons-icon fixed-width icon="fa-info"></v-ons-icon>
+          </div>
+          <div class="center">Confidentialité</div>
         </v-ons-list-item>
         <v-ons-list-item modifier="chevron" tappable @click="signout()">
           <div class="left">
@@ -22,6 +34,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import store from '../../store';
+import logout from '../../utils/auth.js'
 
 export default {
   name: 'side-menu',
@@ -36,8 +49,9 @@ export default {
   }),
   methods: {
     signout() {
-        window.localStorage.setItem('jwtToken', '')
-        this.goTo('loginPage')
+      this.$store.dispatch('LogOut').then(() => {
+        location.reload()
+      })
     }
   },
 };

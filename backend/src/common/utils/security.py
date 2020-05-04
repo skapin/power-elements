@@ -37,25 +37,20 @@ def extract_payload(token):
 def authentication_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        LOG.info("===>")
         # return f(user={}, *args, **kwargs)
         if 'Authorization' not in request.headers:
             abort(403, 'User not logged or no token received')
         token = request.headers['Authorization']
         token = token.split('Bearer ')
-        LOG.info("===> split")
         if len(token) > 1:
             token = token[1]
         else:
             abort(403, 'Empty token')
         try:
             payload = extract_payload(token)
-            LOG.info("===> extract")
         except Exception as e:
-            LOG.info("===> exct")
             abort(403, 'User not logged or session expired ' + str(e))
         else:
-            LOG.info("===>return")
             return f(user=payload, *args, **kwargs)
     return decorated_function
 

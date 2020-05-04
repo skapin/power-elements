@@ -8,14 +8,14 @@
   },
   "installed_plugins": {
     "cordova-plugin-android-permissions": {
-      "PACKAGE_NAME": "com.kappdev.ehamadate"
+      "PACKAGE_NAME": "com.aio.strikezone"
     },
     "cordova-plugin-camera": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
-      "PACKAGE_NAME": "com.kappdev.ehamadate"
+      "PACKAGE_NAME": "com.aio.strikezone"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.kappdev.ehamadate"
+      "PACKAGE_NAME": "com.aio.strikezone"
     }
   },
   "dependent_plugins": {}

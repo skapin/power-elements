@@ -9,12 +9,22 @@
           <span> Non </span>
         </v-ons-col>
         <v-ons-col width="80%" vertical-align="center">
-          <v-ons-range @click="clickAnswer(question)" v-model="volume" style="width: 90%;"></v-ons-range>
+          <v-ons-range @click="clickAnswer()" v-model="value" style="width: 90%;"></v-ons-range>
         </v-ons-col>
         <v-ons-col width="10%" vertical-align="center">
           <span> Oui </span>
         </v-ons-col>
       </v-ons-row>
+      <!-- <v-ons-row>
+        <v-ons-col vertical-align="center"> -->
+          <v-ons-card class="call-card" >
+            <div class="content">
+          Vous pouvez appeler votre correspondant dans l’entreprise pour échanger avec lui et prendre une décision ensemble du choix qui est fait pour la journée
+          <a href="tel:0681786159">Appeler</a>
+        </div>
+      </v-ons-card>
+        <!-- </v-ons-col>
+      </v-ons-row> -->
     </div>
   </v-ons-card>
 </template>
@@ -35,12 +45,14 @@ export default{
   },
   data () {
     return {
-      volume: '',
+      displayCallButton: false,
+      value: '',
     }
   },
   methods: {
     clickAnswer () {
-      this.$emit('clicked', {'id': this.questionId, 'answer': this.volume, 'question': this.question})
+      this.displayCallButton = (this.value > 70)
+      this.$emit('clicked', {'id': this.questionId, 'answer': this.value, 'question': this.question})
     },
   }
   // eslint-disable-next-line
@@ -49,6 +61,9 @@ export default{
 </script>
 
 <style scoped>
+.call-card {
+ background-color: #ffd175;
+}
 .card {
   width: 80%;
   margin: 0 auto;

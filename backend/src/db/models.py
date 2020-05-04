@@ -1,15 +1,10 @@
 import datetime
-import enum
 
 from uuid import uuid4
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, desc, Enum, ForeignKey, asc, func, Float
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship, backref
-from common.server.flaskutils import print_flush
-from common.db.tools import to_dict, serialize, serialize_foreign, serialize_foreign_recursive
 from common.db.base import Base
 from common.utils.security import verify_password, hash_password
-
-from config.settings import SETTINGS
 
 
 class Account(Base):
@@ -18,7 +13,9 @@ class Account(Base):
     uniqid = Column(String(36), primary_key=True)
     password = Column(String(89), nullable=True)
     name = Column(String(50), unique=True)
-    created_at = Column(DateTime, unique=False, default=datetime.datetime.utcnow)
+    created_at = Column(DateTime,
+                        unique=False,
+                        default=datetime.datetime.utcnow)
 
     def __init__(self, name, password):
         self.uniqid = str(uuid4())
@@ -65,13 +62,19 @@ class Response(Base):
 
     uniqid = Column(String(36), primary_key=True)
     value = Column(Integer)
-    created_at = Column(DateTime, unique=False, default=datetime.datetime.utcnow)
+    created_at = Column(DateTime,
+                        unique=False,
+                        default=datetime.datetime.utcnow)
 
-    question_id = Column(String(36), ForeignKey('question.uniqid', onupdate="CASCADE"))
-    question = relationship('Question', backref=backref('responses', lazy='dynamic'))
+    question_id = Column(String(36),
+                         ForeignKey('question.uniqid', onupdate="CASCADE"))
+    question = relationship('Question',
+                            backref=backref('responses', lazy='dynamic'))
 
-    account_id = Column(String(36), ForeignKey('account.uniqid', onupdate="CASCADE"))
-    account = relationship('Account', backref=backref('responses', lazy='dynamic'))
+    account_id = Column(String(36),
+                        ForeignKey('account.uniqid', onupdate="CASCADE"))
+    account = relationship('Account',
+                           backref=backref('responses', lazy='dynamic'))
 
     def __init__(self, value, question_obj, account_obj):
         self.uniqid = str(uuid4())
@@ -82,4 +85,3 @@ class Response(Base):
 
     def __repr__(self):
         return '<Response %r (%r) (%s)>' % (self.valide, self.time, self.uniqid)
-
