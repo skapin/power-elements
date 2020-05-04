@@ -18,7 +18,7 @@
               class="btn"
               modifier="large"
               @click="validatePassword()"
-              :disabled="loading"
+              :disabled="loading || !password"
             >
               Créer le compte
             </v-ons-button>
