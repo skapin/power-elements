@@ -1,7 +1,7 @@
 <template>
   <v-ons-page>
     <navbar enabled="false" navType="menu"></navbar>
-    <div class="admin-page" >
+    <div class="admin-page" v-if="globalOptions">
       <apexchart class="chart-display" type="line" :options="globalOptions" :series="globalSeries"></apexchart>
     </div>
   </v-ons-page>
@@ -23,6 +23,7 @@ export default {
       stats: [],
       options: [],
       series: [],
+      reversedResult: [],
       globalOptions: {},
       globalSeries: [],
       falseData: [['2020-05-04', 17], ['2020-05-03', 23], ['2020-05-03', 30], ['2020-05-02', 35], ['2020-05-01', 20], ['2020-04-30', 50], ['2020-04-29', 60], ['2020-04-28', 55], ['2020-04-28', 70], ['2020-04-27', 42]]
@@ -65,11 +66,10 @@ export default {
             }
           },
         };
-        result.push.apply(result, this.falseData)
-        const reversedResult=result.reverse()
+        // this.reversedResult = result.concat(this.falseData).reverse()
         this.globalSeries.push({
             name: 'score',
-            data: reversedResult.map(item => ({
+            data: this.falseData.reverse().map(item => ({
                 x: item[0],
                 y: item[1]
             }))
