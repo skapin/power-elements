@@ -72,11 +72,11 @@ export default {
   },
   methods: {
     getProportion() {
-      if (this.atHome === 0) {
-        return 0;
-      } else {
-        return (this.atWork / (this.atHome + this.atWork)) * 100;
-      }
+        if (this.atHome === 0) {
+            return 0
+        } else {
+            return ((this.atWork / (this.atHome + this.atWork)) * 100).toFixed(2)
+        }
     },
     getAtWorkUser() {
       server.getAtWork().then(result => {
@@ -120,14 +120,15 @@ export default {
             }
           }
         };
-        // this.reversedResult = result.concat(this.falseData).reverse()
+        this.reversedResult = result.concat(this.falseData).reverse()
+
         this.globalSeries.push({
-          name: "score",
-          data: this.falseData.reverse().map(item => ({
-            x: item[0],
-            y: item[1]
-          }))
-        });
+            name: 'score',
+            data: this.reversedResult.map(item => ({
+                x: item[0],
+                y: item[1]
+            }))
+        })
       });
     }
   },
