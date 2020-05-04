@@ -8,9 +8,9 @@
                 :question="row.name"/>
       </div>
       <div class="validation-button btn">
-        <v-ons-button 
-          @click="sendResponses()" 
-          :disabled="validateDisabled || loading" 
+        <v-ons-button
+          @click="sendResponses()"
+          :disabled="validateDisabled || loading"
           modifier="large"
         >
           Valider
@@ -41,6 +41,13 @@ export default {
   },
   methods: {
     onClickChild (value) {
+      console.log(value.answer)
+      if (value.answer === true) {
+          value.answer = 100
+      } else {
+          value.answer = 0
+      }
+      console.log(value)
       if (this.qcmAnswers[value.id] === undefined) {
         this.qcmAnswers[value.id] = []
         this.qcmAnswers[value.id] = value.answer
