@@ -56,7 +56,7 @@ export default {
         if (this.atHome === 0) {
             return 0
         } else {
-            return (this.atWork / (this.atHome + this.atWork)) * 100
+            return ((this.atWork / (this.atHome + this.atWork)) * 100).toFixed(2)
         }
     },
     getAtWorkUser() {
