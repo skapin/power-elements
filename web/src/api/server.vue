@@ -22,12 +22,22 @@ function getStats () {
   return http.get('/api/stats')
 }
 
+function getAtWork() {
+    return http.get('/api/stats/at_work')
+}
+
+function isAtWork(value) {
+    return http.patch('/api/accounts', {'value': value})
+}
+
 export default {
   getStats,
   getAllQuestions,
   createAccount,
   sendResponsesApi,
-  clearUserInfo
+  clearUserInfo,
+  getAtWork,
+  isAtWork
 }
 
 </script>

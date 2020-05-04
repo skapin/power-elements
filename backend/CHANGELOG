@@ -1,0 +1,3 @@
+[2020-05-04]
+psql -U aiosuperusercovid aiocovid
+ALTER TABLE account ADD at_work boolean default false;

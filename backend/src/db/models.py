@@ -1,7 +1,7 @@
 import datetime
 
 from uuid import uuid4
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import relationship, backref
 from common.db.base import Base
 from common.utils.security import verify_password, hash_password
@@ -13,6 +13,7 @@ class Account(Base):
     uniqid = Column(String(36), primary_key=True)
     password = Column(String(89), nullable=True)
     name = Column(String(50), unique=True)
+    at_work = Column(Boolean)
     created_at = Column(DateTime,
                         unique=False,
                         default=datetime.datetime.utcnow)
@@ -21,6 +22,7 @@ class Account(Base):
         self.uniqid = str(uuid4())
         self.name = name
         self.password = password
+        self.at_work = False
         self.created_at = datetime.datetime.utcnow()
 
     def set_password(self, password):

@@ -8,10 +8,14 @@ from server.api.responses.responses_collection import ResponsesCollection
 from server.api.questions.init_questions import InitQuestions
 from server.api.questions.questions_collection import QuestionsCollection
 from server.api.auth.signup import Signup
+from server.api.stats.stats import Stats
+from server.api.stats.at_work import AtWork
+from server.api.account.account_item import AccountItem
+
 from common.utils.security import authentication_required
 from common.db.base import Database
 from db.models import Account, Response
-from server.api.stats.stats import Stats
+
 
 LOG = logging.getLogger(__name__)
 
@@ -23,6 +27,8 @@ rest_api.add_resource(QuestionsCollection, '/api/questions', methods=['GET', 'DE
 rest_api.add_resource(Signup, '/api/users/signup', methods=['POST'])
 rest_api.add_resource(ResponsesCollection, '/api/responses', methods=['POST'])
 rest_api.add_resource(Stats, '/api/stats', methods=['GET'])
+rest_api.add_resource(AtWork, '/api/stats/at_work', methods=['GET'])
+rest_api.add_resource(AccountItem, '/api/accounts', methods=['PATCH'])
 
 @blueprint.route('/status/is_up', methods=['GET'])
 def is_up():

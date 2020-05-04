@@ -5,12 +5,33 @@
         <div class="content">
             <img class="thank_img" src="../../assets/thank_you.png" title="Merci">
         </div>
+        <v-ons-row v-if="showForm">
+            <v-ons-col><h2>Êtes vous en entreprise ?</h2></v-ons-col>
+            <v-ons-col>
+                <v-ons-list>
+                    <v-ons-list-item v-for="(propal, $index) in propositions" :key="propal" tappable>
+                        <label class="left">
+                            <v-ons-radio
+                            :input-id="'radio-' + $index"
+                            :value="propal"
+                            v-model="selectedPropal"
+                            ></v-ons-radio>
+                        </label>
+                        <label :for="'radio-' + $index" class="center">
+                            {{ propal }}
+                        </label>
+                    </v-ons-list-item>
+                </v-ons-list>
+            </v-ons-col>
+            <v-ons-col><v-ons-button @click="updateAccount()">Valider</v-ons-button></v-ons-col>
+        </v-ons-row>
     </ons-card>
   </v-ons-page>
 </template>
 
 <script>
 import Navbar from '../../components/navbar/Navbar'
+import server from "./../../api/server.vue"
 
 export default {
   name: 'merci',
@@ -21,35 +42,22 @@ export default {
     return {
       qcmAnswers: {},
       questionsList: [],
-      validateDisabled: true
+      validateDisabled: true,
+      propositions: ['OUI', 'NON'],
+      selectedPropal: 'OUI',
+      showForm: true
     }
   },
   methods: {
-    onClickChild (value) {
-      if (this.qcmAnswers[value.id] === undefined) {
-        this.qcmAnswers[value.id] = []
-        this.qcmAnswers[value.id] = value.answer
-      } else {
-        this.qcmAnswers[value.id] = {'value': value.answer, 'question': value.question}
-      }
-      this.validateDisabled = false
-    },
-    getAppQuestions () {
-      server.getAllQuestions().then((result) => {
-        this.questionsList = result
-        this.initResponses()
-      })
-    },
-    initResponses() {
-      this.questionsList.forEach(question => {
-        this.qcmAnswers[question.uniqid] = {'value': '50', 'question': question.name}
-      });
-    },
-    sendResponses() {
-      var jwt = window.localStorage.getItem('jwtToken')
-      server.sendResponsesApi(jwt, this.qcmAnswers).then(() => {
-        this.makeToast('Réponses envoyées ! Merci !')
-      })
+    updateAccount() {
+        var is_here = false
+        if (this.selectedPropal === 'OUI') {
+            is_here = true
+        }
+        server.isAtWork(is_here).then(() => {
+            this.makeToast('Merci !!')
+            this.showForm = false
+        })
     },
     makeToast (text, append = false) {
       // eslint-disable-next-line
