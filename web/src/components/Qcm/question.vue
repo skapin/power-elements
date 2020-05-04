@@ -8,7 +8,7 @@
         <v-ons-col width="20%" vertical-align="center">
           <!-- <v-ons-range @click="clickAnswer()" v-model="value" style="width: 90%;"></v-ons-range> -->
           <v-ons-switch @click="clickAnswer()" input-id="switch1"
-            v-model="value"
+            v-model="value" class="float-right"
           ></v-ons-switch>
         </v-ons-col>
       </v-ons-row>
@@ -76,5 +76,8 @@ export default{
   vertical-align: middle;
   /* bring your own prefixes */
   min-width: 273px;
+}
+.float-right {
+  float: right;
 }
 </style>
