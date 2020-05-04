@@ -75,7 +75,11 @@ export default {
       }).catch((error) => {
         this.loading = false
         this.password = ''
-        this.$toasted.error('Mauvais compte ou mot de passe ')
+        this.$toasted.error('Mauvais compte ou mot de passe',{
+        theme: 'bubble',
+        position: 'bottom-right',
+        duration: 5000
+      })
       })
     }
   },
