@@ -101,10 +101,11 @@ export default {
             }
           },
         };
-        // this.reversedResult = result.concat(this.falseData).reverse()
+        this.reversedResult = result.concat(this.falseData).reverse()
+
         this.globalSeries.push({
             name: 'score',
-            data: this.falseData.reverse().map(item => ({
+            data: this.reversedResult.map(item => ({
                 x: item[0],
                 y: item[1]
             }))
