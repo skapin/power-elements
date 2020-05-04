@@ -34,7 +34,8 @@ export default {
       options: [],
       series: [],
       globalOptions: {},
-      globalSeries: []
+      globalSeries: [],
+      falseData: [['2020-05-04', 17], ['2020-05-03', 23], ['2020-05-03', 30], ['2020-05-02', 35], ['2020-05-01', 20], ['2020-04-30', 50], ['2020-04-29', 60], ['2020-04-28', 55], ['2020-04-28', 70], ['2020-04-27', 42]]
     };
   },
   methods: {
@@ -49,12 +50,16 @@ export default {
           },
           yaxis: {
             min:0,
-            max:100
+            max:100,
+          },
+          xaxis: {
+            type: 'datetime',
+            reversed: true
           },
           annotations: {
             yaxis: [
               {
-                y: 75,
+                y: 60,
                 y2: 100,
                 borderColor: "#000",
                 fillColor: "#FFCCCB",
@@ -70,57 +75,18 @@ export default {
               show: true
             }
           },
-          // xaxis: {
-          //   categories: result.flatMap(el =>
-          //     el.results.map(cat => cat.created_at.substring(5, 10))
-          //   )
-          // }
         };
-
-        // result.map(el =>
-        //   this.globalSeries.push({
-        //     name: el.question_name,
-        //     data: el.results.map(item => item.value)
-        //   })
-        // );
-
-        result.map(el =>
-          this.globalSeries.push({
-            name: el.question_name,
-            data: el.results.map(item => ({
-              x: item.created_at.substring(5, 10),
-              y: item.value
+        console.log(result)
+        result.push.apply(result, this.falseData)
+        var reversedResult=result.reverse()
+        this.globalSeries.push({
+            name: 'score',
+            data: reversedResult.map(item => ({
+                x: item[0],
+                y: item[1]
             }))
-          })
-        );
-
-        result.forEach(element => {
-          this.options.push({
-            legend: {
-              show: true,
-              showForSingleSeries: true
-            },
-            chart: {
-              id: element.question_name,
-              toolbar: {
-                show: true
-              }
-            },
-            xaxis: {
-              categories: element.results.map(el =>
-                el.created_at.substring(5, 10)
-              )
-            },
-            colors: ["#60C2F6", "#5FAE58"]
-          });
-
-          this.series.push([
-            {
-              name: element.question_name,
-              data: element.results.map(item => item.value)
-            }
-          ]);
-        });
+        })
+          console.log(this.globalSeries)
       });
     }
   },

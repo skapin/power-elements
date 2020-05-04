@@ -84,4 +84,4 @@ class Response(Base):
         self.created_at = datetime.datetime.utcnow()
 
     def __repr__(self):
-        return '<Response %r (%r) (%s)>' % (self.valide, self.time, self.uniqid)
+        return '<Response %r (%r) (%s)>' % (self.value, self.created_at, self.uniqid)
