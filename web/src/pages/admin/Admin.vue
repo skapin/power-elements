@@ -1,18 +1,8 @@
 <template>
   <v-ons-page>
     <navbar enabled="false" navType="menu"></navbar>
-    <div class="admin-page" v-if="options">
+    <div class="admin-page" >
       <apexchart class="chart-display" type="line" :options="globalOptions" :series="globalSeries"></apexchart>
-
-      <!-- <div v-for="stat in stats" v-bind:key="stat.index">
-        <hr />
-        <apexchart
-          class="chart-display"
-          type="line"
-          :options="options[stat.index]"
-          :series="series[stat.index]"
-        ></apexchart>
-      </div>-->
     </div>
   </v-ons-page>
 </template>
@@ -53,8 +43,7 @@ export default {
             max:100,
           },
           xaxis: {
-            type: 'datetime',
-            reversed: true
+            type: 'datetime'
           },
           annotations: {
             yaxis: [
@@ -76,9 +65,8 @@ export default {
             }
           },
         };
-        console.log(result)
         result.push.apply(result, this.falseData)
-        var reversedResult=result.reverse()
+        const reversedResult=result.reverse()
         this.globalSeries.push({
             name: 'score',
             data: reversedResult.map(item => ({
@@ -86,7 +74,6 @@ export default {
                 y: item[1]
             }))
         })
-          console.log(this.globalSeries)
       });
     }
   },
