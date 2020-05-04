@@ -12,7 +12,7 @@
           :options="options[stat.index]"
           :series="series[stat.index]"
         ></apexchart>
-      </div> -->
+      </div>-->
     </div>
   </v-ons-page>
 </template>
@@ -40,12 +40,29 @@ export default {
   methods: {
     getStats() {
       server.getStats().then(result => {
-        this.stats = result
+        this.stats = result;
 
         this.globalOptions = {
           legend: {
             show: true,
             showForSingleSeries: true
+          },
+          yaxis: {
+            min:0,
+            max:100
+          },
+          annotations: {
+            yaxis: [
+              {
+                y: 75,
+                y2: 100,
+                borderColor: "#000",
+                fillColor: "#FFCCCB",
+                label: {
+                  text: "zone à risque"
+                }
+              }
+            ]
           },
           chart: {
             id: "global",
@@ -53,29 +70,29 @@ export default {
               show: true
             }
           },
-          xaxis: {
-            categories: result.flatMap(el =>
-              el.results.map(cat => cat.created_at.substring(5, 10))
-            )
-          }
+          // xaxis: {
+          //   categories: result.flatMap(el =>
+          //     el.results.map(cat => cat.created_at.substring(5, 10))
+          //   )
+          // }
         };
-
-        result.map(el =>
-          this.globalSeries.push({
-            name: el.question_name,
-            data: el.results.map(item => item.value)
-          })
-        );
 
         // result.map(el =>
         //   this.globalSeries.push({
         //     name: el.question_name,
-        //     data: el.results.map(item => ({
-        //       x: item.username,
-        //       y: item.value
-        //     }))
+        //     data: el.results.map(item => item.value)
         //   })
         // );
+
+        result.map(el =>
+          this.globalSeries.push({
+            name: el.question_name,
+            data: el.results.map(item => ({
+              x: item.created_at.substring(5, 10),
+              y: item.value
+            }))
+          })
+        );
 
         result.forEach(element => {
           this.options.push({
