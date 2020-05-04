@@ -23,7 +23,7 @@
                     </v-ons-list-item>
                 </v-ons-list>
             </v-ons-col>
-            <v-ons-col><v-ons-button @click="updateAccount()">Valider</v-ons-button></v-ons-col>
+            <v-ons-col><v-ons-button class="btn" @click="updateAccount()">Valider</v-ons-button></v-ons-col>
         </v-ons-row>
     </ons-card>
   </v-ons-page>
