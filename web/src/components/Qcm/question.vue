@@ -1,18 +1,15 @@
 <template>
   <v-ons-card class="card">
-    <div class="title">
-      <h1>{{ question }}</h1>
-    </div>
     <div class="content">
       <v-ons-row>
-        <v-ons-col width="10%" vertical-align="center">
-          <span> Non </span>
-        </v-ons-col>
-        <v-ons-col width="80%" vertical-align="center">
-          <v-ons-range @click="clickAnswer()" v-model="value" style="width: 90%;"></v-ons-range>
+        <v-ons-col width="90%" vertical-align="center">
+          <h1>{{ question }}</h1>
         </v-ons-col>
         <v-ons-col width="10%" vertical-align="center">
-          <span> Oui </span>
+          <!-- <v-ons-range @click="clickAnswer()" v-model="value" style="width: 90%;"></v-ons-range> -->
+          <v-ons-switch @click="clickAnswer()" input-id="switch1"
+            v-model="value"
+          ></v-ons-switch>
         </v-ons-col>
       </v-ons-row>
       <!-- <v-ons-row>
@@ -46,12 +43,12 @@ export default{
   data () {
     return {
       displayCallButton: false,
-      value: '',
+      value: false,
     }
   },
   methods: {
     clickAnswer () {
-      this.displayCallButton = (this.value > 70)
+      this.displayCallButton = this.value
       this.$emit('clicked', {'id': this.questionId, 'answer': this.value, 'question': this.question})
     },
   }
