@@ -11,10 +11,10 @@
 
 <template>
   <v-ons-card class="bluecard">
-      <div class="title">
+      <div class="title title-font-size">
         Informations importantes
       </div>
-      <div class="content">
+      <div class="content content-font-size">
        <p>Le questionnaire est anonyme, nous ne collectons aucune donnée personelle.</p>
        <p>Le but de cette application est d'évaluer la possible présence du COVID-19 au sein de l'entreprise en regroupant les réponses anonymes des collaborateurs.</p>
       </div>
@@ -26,3 +26,12 @@ export default {
   name: 'CardPrivateInfos',
 };
 </script>
+<style scoped>
+.content-font-size{
+    font-size: 1.3rem !important;
+}
+
+.title-font-size {
+    font-size: 1.8rem !important ;
+}
+</style>

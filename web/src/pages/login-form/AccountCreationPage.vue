@@ -9,12 +9,15 @@
         <v-ons-row>
           <p class="login-header">Création de compte</p>
         </v-ons-row>
+        <v-ons-row>
+          <p class="login-info">Votre pseudonyme sera généré aléatoirement pour garantir votre anonymat. Veuillez simplement entrer un mot de passe !</p>
+        </v-ons-row>
         <v-ons-row class="login-form">
           <v-ons-input placeholder="Choisis un mot de passe" float type="password" v-model="password"></v-ons-input>
         </v-ons-row>
         <v-ons-row>
           <v-ons-col>
-            <v-ons-button 
+            <v-ons-button
               class="btn"
               modifier="large"
               @click="validatePassword()"
@@ -101,6 +104,16 @@ v-ons-button {
 .login-header {
   text-align: center;
   background-color: #215d9e;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  color: white;
+  font-size: 24px;
+  margin: 0px;
+}
+.login-info {
+  text-align: center;
+  background-color:#78C7F0;
   width: 100%;
   height: 100%;
   padding: 15px;
