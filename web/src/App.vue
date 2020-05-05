@@ -1,7 +1,7 @@
 <template>
 <v-ons-page class="ma_page_app">
   <v-ons-splitter>
-    <v-ons-splitter-side swipeable collapse width="250px" :open.sync="menuIsOpen">
+    <v-ons-splitter-side v-if="getIfLoggedIn()" swipeable collapse width="250px" :open.sync="menuIsOpen">
       <side-menu></side-menu>
     </v-ons-splitter-side>
     <v-ons-splitter-content>
