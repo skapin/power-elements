@@ -28,10 +28,10 @@ export default {
 </script>
 <style scoped>
 .content-font-size{
-    font-size: 1.3rem !important;
+    font-size: 1rem !important;
 }
 
 .title-font-size {
-    font-size: 1.8rem !important ;
+    font-size: 1.3rem !important ;
 }
 </style>

@@ -27,14 +27,10 @@
             </v-ons-button>
           </v-ons-col>
         </v-ons-row>
-        </div>
-        <div>
         <v-ons-row>
-          <v-ons-col>
             <CardPrivateInfos />
-          </v-ons-col>
         </v-ons-row>
-     </div>
+        </div>
     </div>
   </v-ons-page>
 </template>
@@ -94,7 +90,7 @@ export default {
   margin-right: 10px;
 }
 v-ons-button {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 .login-form {
   background-color: white;
@@ -108,7 +104,7 @@ v-ons-button {
   height: 100%;
   padding: 15px;
   color: white;
-  font-size: 24px;
+  font-size: 1rem;
   margin: 0px;
 }
 .login-info {
@@ -118,7 +114,7 @@ v-ons-button {
   height: 100%;
   padding: 15px;
   color: white;
-  font-size: 24px;
+  font-size: 1rem;
   margin: 0px;
 }
 .center-screen {
@@ -127,10 +123,11 @@ v-ons-button {
   flex-direction: column;
   align-items: center;
   width: 40vh;
+  height: 80vh;
   min-width: 300px;
 }
 .login-page {
-  min-height: calc(100vh - 44px);
+  min-height: 100vh;
   display:flex;
   flex-direction: column;
   justify-content: space-around;

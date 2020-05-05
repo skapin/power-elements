@@ -9,7 +9,7 @@
             <v-ons-col><h2>Êtes vous en entreprise ?</h2></v-ons-col>
             <v-ons-col>
                 <v-ons-list>
-                    <v-ons-list-item v-for="(propal, $index) in propositions" :key="propal" tappable>
+                    <v-ons-list-item modifier="nodivider" v-for="(propal, $index) in propositions" :key="propal" tappable>
                         <label class="left">
                             <v-ons-radio
                             :input-id="'radio-' + $index"

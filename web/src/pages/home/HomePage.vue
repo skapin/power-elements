@@ -65,7 +65,7 @@ export default {
     },
     initResponses() {
       this.questionsList.forEach(question => {
-        this.qcmAnswers[question.uniqid] = {'value': '50', 'question': question.name}
+        this.qcmAnswers[question.uniqid] = {'value': '0', 'question': question.name}
       });
     },
     sendResponses() {

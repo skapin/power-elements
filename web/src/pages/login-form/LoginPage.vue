@@ -25,10 +25,10 @@
             <v-ons-button class="btn" modifier="large" @click="goTo('accountCreationPage')">Pas de compte ?</v-ons-button>
           </v-ons-col>
           <v-ons-col>
-            <v-ons-button 
-              :disabled="loading" 
-              class="btn" 
-              modifier="large" 
+            <v-ons-button
+              :disabled="loading"
+              class="btn"
+              modifier="large"
               @click="handleLogin()"
             >
               Se connecter
@@ -114,7 +114,7 @@ export default {
   margin-right: 10px;
 }
 v-ons-button {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .btn:hover {
@@ -134,7 +134,7 @@ v-ons-button {
   height: 100%;
   padding: 15px;
   color: white;
-  font-size: 24px;
+  font-size: 1.5rem;
   margin: 0px;
 }
 .center-screen {
@@ -142,10 +142,11 @@ v-ons-button {
   flex-direction: column;
   align-items: center;
   width: 40vh;
+  height: 80vh;
   min-width: 300px;
 }
 .login-page {
-  height: calc(100vh - 44px);
+  height: 100vh;
   display:flex;
   flex-direction: column;
   justify-content: space-evenly;
