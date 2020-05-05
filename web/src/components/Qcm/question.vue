@@ -5,15 +5,15 @@
         <v-ons-col width="50%" vertical-align="center">
           <h3>{{ question }}</h3>
         </v-ons-col>
-        <v-ons-col width="5%"></v-ons-col>
-        <v-ons-col width="12%" vertical-align="center"><p style="text-align: right;"><b>Non</b></p></v-ons-col>
-        <v-ons-col width="15%" vertical-align="center">
+        <v-ons-col width="3%"></v-ons-col>
+        <v-ons-col width="12%" vertical-align="center"><p class="float-right"><b>Non</b></p></v-ons-col>
+        <v-ons-col width="22%" vertical-align="center">
           <!-- <v-ons-range @click="clickAnswer()" v-model="value" style="width: 90%;"></v-ons-range> -->
           <v-ons-switch @click="clickAnswer()" input-id="switch1"
             v-model="value" class="float-right btn"
           ></v-ons-switch>
         </v-ons-col>
-        <v-ons-col width="12%" vertical-align="center"><p style="text-align: right;"><b>Oui</b></p></v-ons-col>
+        <v-ons-col width="12%" vertical-align="center"><p class="float-right"><b>Oui</b></p></v-ons-col>
       </v-ons-row>
       <!-- <v-ons-row>
         <v-ons-col vertical-align="center"> -->
