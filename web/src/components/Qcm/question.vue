@@ -51,7 +51,7 @@ export default{
   },
   methods: {
     clickAnswer () {
-      this.displayCallButton = this.value
+      this.displayCallButton = !this.displayCallButton
       this.$emit('clicked', {'id': this.questionId, 'answer': this.value, 'question': this.question})
     },
   }
