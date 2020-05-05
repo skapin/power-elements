@@ -6,9 +6,9 @@
      
       <div class="login-page">
         <div class="center-screen">
-          <v-ons-row>
+          <!-- <v-ons-row>
             <img class="login-logo" src="../../assets/AIO-logo.png" />
-          </v-ons-row>
+          </v-ons-row> -->
           <v-ons-row>
             <p class="login-header">Connexion</p>
           </v-ons-row>
@@ -110,8 +110,9 @@ export default {
   margin-top: 25%;
 }
 .login-logo {
-  width: 100%;
-  margin-bottom: 20px;
+  width: 280px;
+  height: 200px;
+  margin: 0px auto 10px auto;
 }
 .button-page {
   margin-right: 10px;

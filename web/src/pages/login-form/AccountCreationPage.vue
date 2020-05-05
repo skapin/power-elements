@@ -1,90 +1,102 @@
 <template>
   <v-ons-page>
     <navbar returnPath="loginPage"></navbar>
-    <div class="login-page">
-      <div class="center-screen">
-        <v-ons-row>
-          <img class="login-logo" src="../../assets/AIO-logo.png" />
-        </v-ons-row>
-        <v-ons-row>
-          <p class="login-header">Création de compte</p>
-        </v-ons-row>
-        <v-ons-row>
-          <p class="login-info">Votre pseudonyme sera généré aléatoirement pour garantir votre anonymat. Veuillez simplement entrer un mot de passe !</p>
-        </v-ons-row>
-        <v-ons-row class="login-form">
-          <v-ons-input placeholder="Choisis un mot de passe" float type="password" v-model="password"></v-ons-input>
-        </v-ons-row>
-        <v-ons-row>
-          <v-ons-col>
-            <v-ons-button
-              class="btn"
-              modifier="large"
-              @click="validatePassword()"
-              :disabled="loading || !password"
-            >
-              Créer le compte
-            </v-ons-button>
-          </v-ons-col>
-        </v-ons-row>
-        <v-ons-row>
+    <div class="background"></div>
+    <div class="content">
+      <div class="account-page">
+        <div class="center-screen">
+          <!-- <v-ons-row>
+            <img class="login-logo" src="../../assets/AIO-logo.png" />
+          </v-ons-row> -->
+          <v-ons-row>
+            <p class="login-header">Création de compte</p>
+          </v-ons-row>
+          <v-ons-row>
+            <p
+              class="login-info"
+            >Votre pseudonyme sera généré aléatoirement pour garantir votre anonymat. Veuillez simplement entrer un mot de passe !</p>
+          </v-ons-row>
+          <v-ons-row class="login-form">
+            <v-ons-input
+              placeholder="Choisis un mot de passe"
+              float
+              type="password"
+              v-model="password"
+            ></v-ons-input>
+          </v-ons-row>
+          <v-ons-row>
+            <v-ons-col>
+              <v-ons-button
+                class="btn"
+                modifier="large"
+                @click="validatePassword()"
+                :disabled="loading || !password"
+              >Créer le compte</v-ons-button>
+            </v-ons-col>
+          </v-ons-row>
+          <v-ons-row>
             <CardPrivateInfos />
-        </v-ons-row>
+          </v-ons-row>
         </div>
+      </div>
     </div>
   </v-ons-page>
 </template>
 <script>
-import Navbar from '../../components/navbar/Navbar';
-import server from './../../api/server.vue';
-import CardPrivateInfos from '../../components/informations/CardPrivateInfos'
+import Navbar from "../../components/navbar/Navbar";
+import server from "./../../api/server.vue";
+import CardPrivateInfos from "../../components/informations/CardPrivateInfos";
 
 export default {
-  props: ['toggleMenu', 'pageStack'],
-  name: 'create-user',
-  data: function () {
+  props: ["toggleMenu", "pageStack"],
+  name: "create-user",
+  data: function() {
     return {
-      password: '',
+      password: "",
       loading: false
-    }
+    };
   },
   methods: {
-    validatePassword () {
-      this.$toasted.clear()
-      this.loading = true
+    validatePassword() {
+      this.$toasted.clear();
+      this.loading = true;
       server
         .createAccount(this.password)
-        .then((result) => {
-          this.loading = false
-          this.makeToast('Votre identifiant est: ' + result.Username)
-          this.$router.push({name: 'loginPage', query: { user: result.Username } });
+        .then(result => {
+          this.loading = false;
+          this.makeToast("Votre identifiant est: " + result.Username);
+          this.$router.push({
+            name: "loginPage",
+            query: { user: result.Username }
+          });
         })
-        .catch((err) => {
-          this.loading = false
-          this.makeToast('Erreur lors de la création de l\'utilisateur')
-        })
+        .catch(err => {
+          this.loading = false;
+          this.makeToast("Erreur lors de la création de l'utilisateur");
+        });
     },
-    makeToast (text, append = false) {
+    makeToast(text, append = false) {
       // eslint-disable-next-line
       let toast = this.$toasted.info(text, {
-        theme: 'bubble',
-        position: 'bottom-right',
+        theme: "bubble",
+        position: "bottom-right",
         duration: 15000
-      })
+      });
     }
   },
   components: { Navbar, CardPrivateInfos }
   // eslint-disable-next-line
-}
+};
 </script>
 
-<style>
+<style scoped>
 .home-block {
   margin-top: 25%;
 }
 .login-logo {
-  width: 100%;
-  margin-bottom: 20px;
+  width: 50vw;
+  height: 40vw;
+  margin: 0px auto 10px auto;
 }
 .button-page {
   margin-right: 10px;
@@ -109,7 +121,7 @@ v-ons-button {
 }
 .login-info {
   text-align: center;
-  background-color:#78C7F0;
+  background-color: #78c7f0;
   width: 100%;
   height: 100%;
   padding: 15px;
@@ -123,23 +135,26 @@ v-ons-button {
   flex-direction: column;
   align-items: center;
   width: 40vh;
-  height: 80vh;
   min-width: 300px;
 }
-.login-page {
-  min-height: 100vh;
-  display:flex;
+.account-page {
+  min-height: calc(100vh - 44px);
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background: linear-gradient(#61d7ff, #2667a8);
 }
 
-ons-input{
+ons-input {
   width: 50%;
   min-width: 250px;
 }
 .btn:hover {
-  cursor:pointer;
+  cursor: pointer;
+}
+
+.background {
+  /* background-color: green !important; */
+  background: linear-gradient(#61d7ff, #2667a8) !important;
 }
 </style>
