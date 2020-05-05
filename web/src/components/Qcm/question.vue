@@ -9,7 +9,7 @@
         <v-ons-col width="12%" vertical-align="center"><p style="text-align: right;"><b>Non</b></p></v-ons-col>
         <v-ons-col width="15%" vertical-align="center">
           <!-- <v-ons-range @click="clickAnswer()" v-model="value" style="width: 90%;"></v-ons-range> -->
-          <v-ons-switch @click="clickAnswer()" input-id="switch1"
+          <v-ons-switch @click="clickAnswer()" :input-id="questionId"
             v-model="value" class="float-right btn"
           ></v-ons-switch>
         </v-ons-col>
