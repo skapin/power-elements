@@ -1,9 +1,8 @@
 <template>
   <v-ons-page class="ma_page_login">
-     <navbar enabled="false"></navbar>
+    <navbar enabled="false"></navbar>
     <div class="background"></div>
     <div class="content">
-     
       <div class="login-page">
         <div class="center-screen">
           <!-- <v-ons-row>
