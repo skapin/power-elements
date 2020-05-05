@@ -2,15 +2,17 @@
   <v-ons-card class="card">
     <div class="content">
       <v-ons-row>
-        <v-ons-col width="80%" vertical-align="center">
+        <v-ons-col width="75%" vertical-align="center">
           <h3>{{ question }}</h3>
         </v-ons-col>
-        <v-ons-col width="20%" vertical-align="center">
+        <v-ons-col width="10%"><p style="text-align: right;"><b>Non</b></p></v-ons-col>
+        <v-ons-col width="10%" vertical-align="center">
           <!-- <v-ons-range @click="clickAnswer()" v-model="value" style="width: 90%;"></v-ons-range> -->
           <v-ons-switch @click="clickAnswer()" input-id="switch1"
             v-model="value" class="float-right btn"
           ></v-ons-switch>
         </v-ons-col>
+        <v-ons-col width="5%"><p style="text-align: right;"><b>Oui</b></p></v-ons-col>
       </v-ons-row>
       <!-- <v-ons-row>
         <v-ons-col vertical-align="center"> -->

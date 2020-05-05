@@ -7,10 +7,11 @@
                 :questionId="row.uniqid"
                 :question="row.name"/>
       </div>
+      <!-- :disabled="validateDisabled || loading" -->
       <div class="validation-button btn">
         <v-ons-button
           @click="sendResponses()"
-          :disabled="validateDisabled || loading"
+          :disabled="loading"
           modifier="large"
         >
           Valider

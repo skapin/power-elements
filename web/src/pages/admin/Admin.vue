@@ -2,6 +2,9 @@
   <v-ons-page>
     <navbar enabled="false" navType="menu"></navbar>
     <div class="admin-page" v-if="globalOptions">
+      <v-ons-row>
+          <p>Nombre total d'employés: <b>{{ atWork + atHome }}</b></p>
+      </v-ons-row>
       <apexchart class="chart-display" type="line" :options="globalOptions" :series="globalSeries"></apexchart>
       <v-ons-row>
         <p class="center">

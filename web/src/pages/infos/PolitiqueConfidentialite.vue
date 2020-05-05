@@ -10,23 +10,23 @@
           <v-ons-list-item expandable :expanded.sync="isExpanded">
             Quelles sont les informations enregistrées ?
             <div class="expandable-content">Votre nom de compte anonyme, votre mot de passe chiffré (donc illisible), ainsi que la réponse aux questions avec date.
-            Lien vers <a href="/static/img/db_schema.png"> la table User</a> et <a href="/static/img/db_schema_2.png">la table de reponse</a>
+            Lien vers <a href="/static/img/db_schema.png"> la table User</a> et <a href="/static/img/db_schema_2.png">la table de réponse</a>
 
           </div>
           </v-ons-list-item>
         </v-ons-list>
         <v-ons-list class="bubble">
           <v-ons-list-item expandable :expanded.sync="isExpanded">
-            J'ai peur qu'un tier puisse accède aux données, ou sont elles stockés ?
-            <div class="expandable-content">L'application est hébergé sur un serveur dédié à AIO fournit par une société française (Online, groupe Illiad). <br>Le serveur se situe physiquement dans le datacenter 2 (DC2) à Vitry sur Seine 
+            J'ai peur qu'un tier puisse accède aux données, ou sont elles stockées ?
+            <div class="expandable-content">L'application est hébergé sur un serveur dédié à AIO fournit par une société française (Online, groupe Illiad). <br>Le serveur se situe physiquement dans le datacenter 2 (DC2) à Vitry sur Seine
               (<a href="https://documentation.online.net/fr/dedicated-server/overview/datacenters#scaleway_datacenter_dc2" >Plus d'info)</a></div>
           </v-ons-list-item>
         </v-ons-list>
         <v-ons-list class="bubble">
           <v-ons-list-item expandable :expanded.sync="isExpanded">
             Je veux supprimer mes données, comment faire ?
-            <div class="expandable-content">Cette action est possible mais irréversible. Pour cela 
-              <ons-button @click="removeUserData">Cliquez ici</ons-button>
+            <div class="expandable-content">Cette action est possible mais irréversible. Pour cela
+              <v-ons-button @click="removeUserData">Cliquez ici</v-ons-button>
             </div>
           </v-ons-list-item>
         </v-ons-list>
@@ -34,8 +34,8 @@
           <v-ons-list-item expandable :expanded.sync="isExpanded">
             J'ai vu sur internet ou à la TV que l'on pouvait m'identifier et me tracker quand même à cause de l'adresse IP. Est-ce vrai ? Comment ça fonctionne ?
             <div class="expandable-content">
-              Une <a href="https://fr.wikipedia.org/wiki/Adresse_IP" title="adresse ip">adresse IP</a> est un identifiant fournit par votre fournisseur d'aces internet (fixe ou téléphone portable). Elle permet d'identifier l'equipement (box ou telephone) et ainsi de transferer les parquet internet d'un point A a un point B (entre vous et un site web par exemple). Cette identifiant est une suite de chiffre. seul votre fournisseur d'accès internet peut faire le lien entre cette suite de chiffre et le compte internet (et donc le nom et l'adresse). Il faut une pocedure légale, comme une enquète policiere pour de grave delit, pour demander et acceder à ces informations. En france, la <a href="https://www.cnil.fr/" title="cnil">CNIL</a> est l'organisme independant qui s'assure des droits et libertés sur internet.<br>
-              Il faut savoir que l'adresse IP de votre equipement n'est pas fixe et peut changer etre attribué à un autre usager voir être falsifié. A titre d'information, dans un meme logement ou entreprise, tout les equipements on la même IP.
+              Une <a href="https://fr.wikipedia.org/wiki/Adresse_IP" title="adresse ip">adresse IP</a> est un identifiant fournit par votre fournisseur d'accès internet (fixe ou téléphone portable). Elle permet d'identifier l'équipement (box ou téléphone) et ainsi de transférer les paquets internet d'un point A à un point B (entre vous et un site web par exemple). Cet identifiant est une suite de chiffres. Seul votre fournisseur d'accès internet peut faire le lien entre cette suite de chiffres et le compte internet (et donc le nom et l'adresse). Il faut une procédure légale, comme une enquête policière pour de graves délits, pour demander et accéder à ces informations. En France, la <a href="https://www.cnil.fr/" title="cnil">CNIL</a> est l'organisme indépendant qui s'assure des droits et libertés sur internet.<br>
+              Il faut savoir que l'adresse IP de votre équipement n'est pas fixe et peut changer (être attribuée à un autre usager voir être falsifiée). À titre d'information, dans un même logement ou entreprise, tous les équipements ont la même adresse IP.
             </div>
           </v-ons-list-item>
         </v-ons-list>
@@ -75,7 +75,7 @@ export default {
         }
       })
     }
-   
+
   },
   mounted: function () {
   },
