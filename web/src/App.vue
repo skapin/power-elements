@@ -1,5 +1,5 @@
 <template>
-<v-ons-page id="app">
+<v-ons-page class="ma_page_app">
   <v-ons-splitter>
     <v-ons-splitter-side swipeable collapse width="250px" :open.sync="menuIsOpen">
       <side-menu></side-menu>
@@ -83,5 +83,11 @@ ons-list-item {
 .slide-fade-enter, .slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
+}
+
+.ma_page_app {
+  background-color: red !important;
+  /* background: linear-gradient(#61d7ff, #2667a8) !important; */
+
 }
 </style>
