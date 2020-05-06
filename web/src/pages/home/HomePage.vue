@@ -82,6 +82,12 @@ export default {
             position: 'bottom-center',
             duration: 5000
           })
+        } else if (err.response.status == 403) {
+          let toast = this.$toasted.error("Vous avez déjà répondu aujourd'hui", {
+            theme: 'bubble',
+            position: 'bottom-center',
+            duration: 5000
+          })
         }
       })
     },
