@@ -2,26 +2,27 @@
   <v-ons-page>
     <navbar enabled="false" navType="menu"></navbar>
     <div class="admin-page" v-if="globalOptions">
-      <v-ons-row>
-          <p>Nombre total d'employés: <b>{{ atWork + atHome }}</b></p>
-      </v-ons-row>
+     
       <apexchart class="chart-display" type="line" :options="globalOptions" :series="globalSeries"></apexchart>
+       <v-ons-row>
+          <p class="center">Nombre total d'employés: <br/><b>{{ atWork + atHome }}</b></p>
+      </v-ons-row>
       <v-ons-row>
         <p class="center">
           Collaborateurs en entreprise:
-          <b>{{ atWork }}</b>
+          <br/><b>{{ atWork }}</b>
         </p>
       </v-ons-row>
       <v-ons-row>
         <p class="center">
           Collaborateurs à la maison:
-          <b>{{ atHome }}</b>
+          <br/><b>{{ atHome }}</b>
         </p>
       </v-ons-row>
       <v-ons-row>
         <p class="center">
           Présence:
-          <b>{{ getProportion() }} %</b>
+          <br/><b>{{ getProportion() }} %</b>
         </p>
       </v-ons-row>
 
@@ -126,7 +127,7 @@ export default {
         this.reversedResult = result.concat(this.falseData).reverse()
 
         this.globalSeries.push({
-            name: 'score',
+            name: 'nombre de réponses positives au questionnaire',
             data: this.reversedResult.map(item => ({
                 x: item[0],
                 y: item[1]
@@ -159,6 +160,7 @@ export default {
   height: 200px;
 }
 .center {
-  margin: 0 auto;
+  margin: 5px auto;
+  text-align: center;
 }
 </style>
