@@ -14,6 +14,10 @@ function sendResponsesApi(responses) {
   return http.post('/api/responses', {'responses': JSON.stringify(responses)})
 }
 
+function updateResponsesApi(responses) {
+  return http.put('/api/responses', {'responses': JSON.stringify(responses)})
+}
+
 function clearUserInfo() {
   return http.delete('/api/user_info')
 }
@@ -35,6 +39,7 @@ export default {
   getAllQuestions,
   createAccount,
   sendResponsesApi,
+  updateResponsesApi,
   clearUserInfo,
   getAtWork,
   isAtWork

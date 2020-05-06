@@ -65,3 +65,34 @@ class ResponsesCollection(Resource):
                 new_response = Response(int(reponse['value']), actual_question, account)
                 db.add(new_response)
         return jsonify(False)
+
+    @authentication_required
+    def put(self, user):
+        params = PARSER.parse_args()
+        if not params:
+            abort(415)
+
+        responses = json.loads(params.get('responses', False))
+        decoded_jwt = user
+        today = datetime.datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+
+
+        with Database(auto_commit=True) as db:
+            account = db.query(Account).filter_by(uniqid=decoded_jwt['uniqid']).first()
+            if not account:
+                abort(404, 'User account not found')
+
+            for response in responses:
+                reponse = responses[response]
+                actual_question = db.query(Question).filter_by(name=reponse['question']).first()
+
+                current_response = db.query(Response)\
+                    .filter_by(account_id=decoded_jwt['uniqid'])\
+                    .filter(Response.created_at >= today)\
+                    .filter_by(question_id=actual_question.uniqid)\
+                    .first()
+                
+                current_response.value = int(reponse['value'])
+
+
+        return jsonify("updated answer")
