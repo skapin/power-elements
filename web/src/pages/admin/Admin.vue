@@ -19,12 +19,12 @@
           <br/><b>{{ atHome }}</b>
         </p>
       </v-ons-row>
-      <v-ons-row>
+      <!-- <v-ons-row>
         <p class="center">
           Présence:
           <br/><b>{{ getProportion() }} %</b>
         </p>
-      </v-ons-row>
+      </v-ons-row> -->
 
       <!-- <div v-for="stat in stats" v-bind:key="stat.index">
         <hr />
