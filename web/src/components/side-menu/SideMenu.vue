@@ -22,7 +22,7 @@
           </div>
           <div class="center">Confidentialité</div>
         </v-ons-list-item>
-        <v-ons-list-item modifier="chevron" tappable @click="goTo('admin')">
+        <v-ons-list-item class="admin" modifier="chevron" tappable @click="goTo('admin')">
           <div class="left">
             <v-ons-icon fixed-width icon="fa-bar-chart"></v-ons-icon>
           </div>
@@ -76,4 +76,9 @@ export default {
   ons-list-item {
     cursor: pointer;
   }
+@media screen and (max-width: 1000px) {
+  .admin {
+    display: none;
+  }
+}
 </style>
