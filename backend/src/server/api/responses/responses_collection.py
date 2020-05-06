@@ -1,5 +1,7 @@
 import logging
 import json
+import datetime
+
 
 from flask import jsonify, abort
 from flask_restful import Resource, reqparse
@@ -44,10 +46,19 @@ class ResponsesCollection(Resource):
 
         responses = json.loads(params.get('responses', False))
         decoded_jwt = user
+        today = datetime.datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+
+
         with Database(auto_commit=True) as db:
             account = db.query(Account).filter_by(uniqid=decoded_jwt['uniqid']).first()
             if not account:
                 abort(404, 'User account not found')
+
+            already_answered_today = db.query(Response).filter_by(account_id=decoded_jwt['uniqid']).filter(Response.created_at >= today).all()
+
+            if already_answered_today:
+                abort(403, 'Already answered today')
+
             for response in responses:
                 reponse = responses[response]
                 actual_question = db.query(Question).filter_by(name=reponse['question']).first()

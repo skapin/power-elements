@@ -97,10 +97,10 @@ export default {
             show: true,
             showForSingleSeries: true
           },
-          yaxis: {
-            min: 0,
-            max: 100
-          },
+          // yaxis: {
+          //   min: 0,
+          //   max: 100
+          // },
           xaxis: {
             type: "datetime"
           },
@@ -108,19 +108,19 @@ export default {
             yaxis: [
               {
                 y: 60,
-                y2: 100,
+                y2: 500,
                 borderColor: "#000",
                 fillColor: "#FFCCCB",
-                label: {
-                  text: "zone à risque"
-                }
+                // label: {
+                //   text: "zone à risque"
+                // }
               }
             ]
           },
           chart: {
             id: "global",
             toolbar: {
-              show: true
+              show: false
             }
           }
         };
