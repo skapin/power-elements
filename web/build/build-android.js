@@ -40,7 +40,7 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
         }
       }
     });
-    const result =  execSync('pwd; cd cordova; cordova build android;').toString()
+    const result =  execSync('pwd; cd cordova; cordova build android --release;').toString()
     apk_spinner.stop()
     console.log(result)
     console.log(chalk.cyan('  APK Build complete.\n'))
