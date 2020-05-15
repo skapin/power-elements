@@ -1,6 +1,6 @@
 {
-  "name": "vue-pwa-onsenui",
-  "short_name": "vue-pwa-onsenui",
+  "name": "AIO santé",
+  "short_name": "AIO santé",
   "icons": [
     {
       "src": "/static/img/icons/android-chrome-192x192.png",

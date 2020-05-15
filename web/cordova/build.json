@@ -1,12 +1,11 @@
 {
   "android": {
       "release": {
-          "keystore": "covid.keystore",
+          "keystore": "strawpoll.keystore",
           "storePassword": "aionet;33",
-          "alias": "covid",
+          "alias": "strawpoll",
           "password" : "aionet;33",
           "keystoreType": ""
       }
   }
- 
  }
