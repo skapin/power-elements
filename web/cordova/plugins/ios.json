@@ -8,13 +8,13 @@
   },
   "installed_plugins": {
     "cordova-plugin-android-permissions": {
-      "PACKAGE_NAME": "com.aio.covid19"
+      "PACKAGE_NAME": "com.aio.health"
     },
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.aio.covid19"
+      "PACKAGE_NAME": "com.aio.health"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.aio.covid19"
+      "PACKAGE_NAME": "com.aio.health"
     }
   },
   "dependent_plugins": {}
