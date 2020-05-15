@@ -1,9 +1,9 @@
 {
   "android": {
       "release": {
-          "keystore": "covid2.keystore",
+          "keystore": "covid.keystore",
           "storePassword": "aionet;33",
-          "alias": "covid2",
+          "alias": "covid",
           "password" : "aionet;33",
           "keystoreType": ""
       }
