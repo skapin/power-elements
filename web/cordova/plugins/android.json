@@ -8,7 +8,7 @@
   },
   "installed_plugins": {
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.aio.health"
+      "PACKAGE_NAME": "com.aio.poll"
     }
   },
   "dependent_plugins": {}

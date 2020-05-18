@@ -37,7 +37,7 @@ export default{
       default: ''
     },
     question: {
-      default: 'AIO Health',
+      default: 'AIO poll',
     },
     questionId: {
       default: ''

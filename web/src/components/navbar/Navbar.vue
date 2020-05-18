@@ -23,7 +23,7 @@ export default {
   name: 'navbar',
   props: {
     msg: {
-      default: 'AIO Health',
+      default: 'AIO poll',
     },
     navType: {
       default: 'back',
