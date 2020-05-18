@@ -7,14 +7,8 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-android-permissions": {
-      "PACKAGE_NAME": "com.aio.poll"
-    },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.aio.poll"
-    },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.aio.poll"
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
   "dependent_plugins": {}
