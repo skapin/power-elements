@@ -23,7 +23,7 @@ export default {
   name: 'navbar',
   props: {
     msg: {
-      default: 'Covid-19 AIO',
+      default: 'AIO Strawpoll',
     },
     navType: {
       default: 'back',

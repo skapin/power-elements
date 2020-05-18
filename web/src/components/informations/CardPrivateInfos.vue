@@ -16,7 +16,7 @@
       </div>
       <div class="content content-font-size">
        <p>Le questionnaire est anonyme, nous ne collectons aucune donnée personelle.</p>
-       <p>Le but de cette application est d'évaluer la possible présence du COVID-19 au sein de l'entreprise en regroupant les réponses anonymes des collaborateurs.</p>
+       <p>Le but de cette application est d'évaluer le risque sanitaire au sein de l'entreprise en regroupant les réponses anonymes des collaborateurs.</p>
       </div>
     </v-ons-card>
 </template>

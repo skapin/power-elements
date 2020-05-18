@@ -37,7 +37,7 @@ export default{
       default: ''
     },
     question: {
-      default: 'covid AIO',
+      default: 'AIO Strawpoll',
     },
     questionId: {
       default: ''
