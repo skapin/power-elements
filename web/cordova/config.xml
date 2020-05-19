@@ -4,7 +4,6 @@
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
-    <icon src="www/static/img/icons/msapplication-icon-144x144.png" />
 
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
@@ -27,6 +26,8 @@
         <allow-intent href="itms-apps:*" />
         <splash src="res/screen/ios/screen-iphone-portrait-568h-2x.png" />
         <icon src="www/static/img/icons/apple-touch-icon-120x120.png" width="120" height="120" />
+        <icon src="www/static/img/icons/apple-touch-icon-120x120.png" width="20" height="20" />
+        <icon src="www/static/img/icons/apple-touch-icon-120x120.png" width="40" height="40" />
         <icon src="www/static/img/icons/apple-touch-icon-60x60.png" width="60" height="60" />
         <icon src="www/static/img/icons/apple-touch-icon-152x152.png" width="152" height="152" />
         <icon src="www/static/img/icons/apple-touch-icon-1024x1024.png" width="1024" height="1024" />
