@@ -18,6 +18,7 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <plugin name="cordova-plugin-whitelist" spec="^1.0.3"/>
         <edit-config file="AndroidManifest.xml" mode="add" target="/manifest" xmlns:android="http://schemas.android.com/apk/res/android">
         </edit-config>
     </platform>
