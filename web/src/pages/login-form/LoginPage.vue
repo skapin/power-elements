@@ -1,6 +1,5 @@
 <template>
   <v-ons-page class="ma_page_login">
-    <navbar enabled="false"></navbar>
     <div class="background"></div>
     <div class="content">
       <div class="login-page">
@@ -9,10 +8,7 @@
             <img class="login-logo" src="../../assets/AIO-logo.png" />
           </v-ons-row> -->
           <v-ons-row>
-            <p class="login-header">Connexion</p>
-          </v-ons-row>
-          <v-ons-row class="login-form">
-            <v-ons-input placeholder="nom d'utilisateur" float type="text" v-model="user"></v-ons-input>
+            <p class="login-header">Connexion Top Secrète !</p>
           </v-ons-row>
           <v-ons-row class="login-form">
             <v-ons-input placeholder="mot de passe" float type="password" v-model="password"></v-ons-input>
@@ -22,8 +18,8 @@
               <v-ons-button
                 class="btn"
                 modifier="large"
-                @click="goTo('accountCreationPage')"
-              >Pas de compte ?</v-ons-button>
+                @click="forgotPassword"
+              >J'ai oublié mon mot de passe</v-ons-button>
             </v-ons-col>
             <v-ons-col>
               <v-ons-button
@@ -40,7 +36,6 @@
   </v-ons-page>
 </template>
 <script>
-import Navbar from "../../components/navbar/Navbar";
 import server from "./../../api/server.vue";
 import { mapGetters } from "vuex";
 
@@ -49,57 +44,66 @@ export default {
   name: "login-page",
   data: function() {
     return {
-      user: "",
       password: "",
       loading: false
     };
   },
+  computed: mapGetters({
+    isLogged: 'getIsLogged',
+  }),
   methods: {
     makeToast(text, append = false) {
       // eslint-disable-next-line
-      let toast = this.$toasted.info(text, {
+      this.$toasted.clear()
+      let toast = this.$toasted.error(text, {
         theme: "bubble",
-        position: "bottom-right",
+        position: "top-center",
         duration: 5000
       });
     },
-    handleLogin() {
-      this.$toasted.clear();
-      this.loading = true;
-      let data = { username: this.user, password: this.password };
+    forgotPassword () {
+      this.makeToast("Cette fonctionnalité est désactivée")
+      this.playSound("https://fboudinet.frenchdev.com/static/share/sounds/bank.mp3")
+    },
+    playSound (sound) {
+      if(sound) {
+        var audio = new Audio(sound)
+        audio.type = 'audio/wav'
+        audio.play()
+      }
+    },
+    handleLogin () {
+      this.$toasted.clear()
+      this.loading = true
       this.$store
-        .dispatch("Login", data)
+        .dispatch("Login", this.password)
         .then(() => {
-          this.loading = false;
-          this.makeToast("Connexion avec succès !");
-          this.goTo("home");
+          this.loading = false
+          this.playSound("https://fboudinet.frenchdev.com/static/share/sounds/correct.mp3")
+          this.goTo("home")
         })
         .catch(error => {
-          this.loading = false;
-          this.password = "";
-          this.$toasted.error("Mauvais compte ou mot de passe", {
+          this.loading = false
+          this.password = ""
+          this.playSound("https://fboudinet.frenchdev.com/static/share/sounds/faux.mp3")
+          this.$toasted.error("Oh non ! C'est faux :'( ", {
             theme: "bubble",
-            position: "bottom-right",
+            position: "top-center",
             duration: 5000
           });
         });
-    }
-  },
-  computed: {
-    getUser() {
-      return this.$store.getters.user;
+    },
+    playAmbiance () {
+      this.playSound("https://fboudinet.frenchdev.com/static/share/sounds/maillon_ambiance.mp3")
+      this.time = setTimeout(function () {
+          this.playAmbiance()
+        }.bind(this), 4400)
     }
   },
   mounted: function() {
-    if (this.$route.query.user) {
-      this.user = this.$route.query.user;
-    } else {
-      if (this.getUser) {
-        this.user = this.getUser;
-      }
-    }
+    this.playAmbiance()
   },
-  components: { Navbar }
+  components: {  }
   // eslint-disable-next-line
 };
 </script>
@@ -145,6 +149,9 @@ v-ons-button {
   align-items: center;
   width: 40vh;
   min-width: 300px;
+  /*background: url('../../assets/back_maillon.png') no-repeat;
+  padding: 100px;*/
+
 }
 .login-page {
   min-height: calc(100vh - 44px);
@@ -156,7 +163,7 @@ v-ons-button {
 
 .background {
   /* background-color: green !important; */
-  background: linear-gradient(#61d7ff, #2667a8) !important;
+  background: linear-gradient(#2667a8, #050505, #080254) !important;
 }
 
 ons-input {

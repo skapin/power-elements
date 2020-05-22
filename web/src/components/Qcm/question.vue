@@ -37,7 +37,7 @@ export default{
       default: ''
     },
     question: {
-      default: 'AIO poll',
+      default: 'Fuku',
     },
     questionId: {
       default: ''

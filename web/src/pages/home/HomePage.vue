@@ -1,28 +1,18 @@
 <template>
   <v-ons-page>
     <navbar enabled="false" navType="menu"></navbar>
-    <div class="home-page" v-if="questionsList">
-      <div v-for="(row, indexRow) in questionsList" v-bind:key="indexRow">
-        <question @clicked="onClickChild" :questionId="row.uniqid" :question="row.name" />
-      </div>
-      <!-- :disabled="validateDisabled || loading" -->
-      <div class="validation-button btn">
-        <v-ons-button @click="sendResponses()" :disabled="loading" modifier="large">Valider</v-ons-button>
-      </div>
+    <div class="home-page">
     </div>
   </v-ons-page>
 </template>
 
 <script>
 import Navbar from "../../components/navbar/Navbar";
-import Question from "../../components/Qcm/question";
-import server from "./../../api/server.vue";
 
 export default {
   name: "posts-page",
   components: {
-    Navbar,
-    Question
+    Navbar
   },
   data() {
     return {
@@ -33,76 +23,8 @@ export default {
     };
   },
   methods: {
-    onClickChild(value) {
-      console.log(value.answer);
-      if (value.answer === true) {
-        value.answer = 100;
-      } else {
-        value.answer = 0;
-      }
-      console.log(value);
-      if (this.qcmAnswers[value.id] === undefined) {
-        this.qcmAnswers[value.id] = [];
-        this.qcmAnswers[value.id] = value.answer;
-      } else {
-        this.qcmAnswers[value.id] = {
-          value: value.answer,
-          question: value.question
-        };
-      }
-      this.validateDisabled = false;
-    },
-    getAppQuestions() {
-      server.getAllQuestions().then(result => {
-        this.questionsList = result;
-        this.initResponses();
-      });
-    },
-    initResponses() {
-      this.questionsList.forEach(question => {
-        this.qcmAnswers[question.uniqid] = {
-          value: "0",
-          question: question.name
-        };
-      });
-    },
-    sendResponses() {
-      this.loading = true;
-      server
-        .sendResponsesApi(this.qcmAnswers)
-        .then(() => {
-          this.loading = false;
-          this.makeToast("Réponses envoyées ! Merci !");
-          this.goTo("merci");
-        })
-        .catch(err => {
-          this.loading = false;
-          if (err.response.status == 404) {
-            let toast = this.$toasted.error("Compte introuvable...", {
-              theme: "bubble",
-              position: "bottom-center",
-              duration: 5000
-            });
-          } else if (err.response.status == 403) {
-            server.updateResponsesApi(this.qcmAnswers).then(() => {
-              this.loading = false;
-              this.makeToast("Réponses mises à jour ! Merci !");
-              this.goTo("merci");
-            });
-          }
-        });
-    },
-    makeToast(text, append = false) {
-      // eslint-disable-next-line
-      let toast = this.$toasted.info(text, {
-        theme: "bubble",
-        position: "bottom-right",
-        duration: 5000
-      });
-    }
   },
   mounted: function() {
-    this.getAppQuestions();
   }
 };
 </script>

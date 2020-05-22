@@ -4,10 +4,10 @@ import { Auth } from '@/utils/auth'
 const user = {
   state: {
     token: Auth.getToken(),
-    payload: Auth.parseJwt(Auth.getToken()),
+    payload: "",
     name: '',
     avatar: '',
-    isLogged: false,
+    isLogged: Auth.getToken(),
     roles: []
   },
 
@@ -31,33 +31,26 @@ const user = {
       state.isLogged = logged
     }
   },
+  getters: {
+    getIsLogged: (state) => { return state.isLogged },
+  },
 
   actions: {
     Login ({ commit }, userInfo) {
-      const username = userInfo.username.trim()
+      const password = userInfo.trim()
       return new Promise((resolve, reject) => {
-        login(username, userInfo.password).then((response) => {
-          const data = response
-          Auth.saveToken(data.token)
-          commit('SET_TOKEN', data.token)
-          let payload = Auth.parseJwt(data.token)
-          commit('SET_PAYLOAD', payload)
-          console.log(payload)
-          commit('SET_NAME', payload.name)
-          commit('SET_LOGGED', data.login)
-          if (data.login) {
-            resolve()
-          } else {
+        if (['yvanbank', 'ivanbank'].includes(password.toLowerCase())) {
+          Auth.saveToken(userInfo)
+          commit('SET_LOGGED', true)
+          resolve()
+        } else {
             reject(new Error('bad login'))
           }
-        }).catch(error => {
-          reject(error)
-        })
       })
     },
 
     Initialize ({ commit, state }) {
-      if (state.payload && Auth.isTokenFresh(state.payload)) {
+      if (state.token) {
         commit('SET_LOGGED', true)
       } else {
         commit('SET_LOGGED', false)

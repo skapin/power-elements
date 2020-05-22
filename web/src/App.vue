@@ -16,6 +16,7 @@
 <script>
 import SideMenu from './components/side-menu/SideMenu';
 import store from './store';
+import { mapGetters } from "vuex";
 
 export default {
   name: 'app',
@@ -30,17 +31,17 @@ export default {
       set: function (newValue) {
         store.commit('toggleMenu');
       }
-    }
+    },
   },
   components: {
     SideMenu,
   },
   methods: {
+    getIfLoggedIn () {
+      return store.getters.getIsLogged
+    },
     onUserInteraction(event) {   // on click ons-splitter-side-mask, event always false(?)
       store.commit('toggleMenu', event);
-    },
-    getIfLoggedIn () {
-      return !_.isEmpty(window.localStorage.getItem('jwtToken'))
     },
   },
   mounted: function () {
