@@ -48,10 +48,16 @@ export default {
   computed: mapGetters(['getBossTimer']),
   methods: {
     bossTimer () {
-      this.$store.commit('increaseTimer')
-      this.bossTimerFct = setTimeout(function () {
+      if (this.$store.getters.getBossTimer <= 0) {
+        this.makeToast("Oh non le delai est dépassé !<br> Dark Bagoul s'est echapé")
+        clearTimeout(this.bossTimerFct)
+        this.goTo('gameOver')
+      } else {
+        this.$store.commit('increaseTimer')
+        this.bossTimerFct = setTimeout(function () {
             this.bossTimer()
           }.bind(this), 1000)
+      }
 
     }
   },

@@ -21,7 +21,7 @@
                 @click="forgotPassword"
               >J'ai oublié mon mot de passe</v-ons-button>
             </v-ons-col>
-            <v-ons-col>
+            <v-ons-col class="button-page">
               <v-ons-button
                 :disabled="loading"
                 class="btn"
@@ -52,15 +52,6 @@ export default {
     isLogged: 'getIsLogged',
   }),
   methods: {
-    makeToast(text, append = false) {
-      // eslint-disable-next-line
-      this.$toasted.clear()
-      let toast = this.$toasted.error(text, {
-        theme: "bubble",
-        position: "top-center",
-        duration: 5000
-      });
-    },
     forgotPassword () {
       this.makeToast("Cette fonctionnalité est désactivée")
       this.playSound("bank.mp3")
@@ -112,10 +103,13 @@ export default {
   margin: 0px auto 10px auto;
 }
 .button-page {
-  margin-right: 10px;
+  margin-top: 5px;
 }
 v-ons-button {
   font-size: 1.5rem;
+}
+.btn {
+  width: 100%;
 }
 
 .btn:hover {

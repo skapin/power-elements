@@ -4,6 +4,7 @@ import AccountCreationPage from './pages/login-form/AccountCreationPage';
 import UserPage from './pages/user-page/UserPage';
 import InfoLegales from './pages/infos/InfosLegales';
 import Boss from './pages/infos/Boss';
+import GameOver from './pages/infos/GameOver';
 import Admin from './pages/admin/Admin';
 import PolitiqueConfidentialite from './pages/infos/PolitiqueConfidentialite';
 
@@ -18,6 +19,7 @@ export default [
   { name: 'politiqueConfidentialite', path: '/politique-de-confidentialité', component: PolitiqueConfidentialite },
   { name: 'boss', path: '/boss', component: Boss },
   { name: 'admin', path: '/admin', component: Admin },
+  { name: 'gameOver', path: '/game-over', component: GameOver },
 
 
 ];

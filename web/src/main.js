@@ -59,6 +59,15 @@ Vue.mixin({
         audio.play()
       }
     },
+    makeToast(text, append = false) {
+      // eslint-disable-next-line
+      this.$toasted.clear()
+      let toast = this.$toasted.error(text, {
+        theme: "bubble",
+        position: "top-center",
+        duration: 5000
+      });
+    },
   }
 })
 
