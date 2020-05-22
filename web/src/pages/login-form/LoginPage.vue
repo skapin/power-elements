@@ -63,14 +63,7 @@ export default {
     },
     forgotPassword () {
       this.makeToast("Cette fonctionnalité est désactivée")
-      this.playSound("https://fboudinet.frenchdev.com/static/share/sounds/bank.mp3")
-    },
-    playSound (sound) {
-      if(sound) {
-        var audio = new Audio(sound)
-        audio.type = 'audio/wav'
-        audio.play()
-      }
+      this.playSound("bank.mp3")
     },
     handleLogin () {
       this.$toasted.clear()
@@ -79,22 +72,23 @@ export default {
         .dispatch("Login", this.password)
         .then(() => {
           this.loading = false
-          this.playSound("https://fboudinet.frenchdev.com/static/share/sounds/correct.mp3")
+          this.playSound("correct.mp3")
+          clearTimeout(this.time)
           this.goTo("home")
         })
         .catch(error => {
           this.loading = false
           this.password = ""
-          this.playSound("https://fboudinet.frenchdev.com/static/share/sounds/faux.mp3")
-          this.$toasted.error("Oh non ! C'est faux :'( ", {
-            theme: "bubble",
-            position: "top-center",
-            duration: 5000
-          });
+          this.playSound("faux.mp3")
+          // this.$toasted.error("Oh non ! C'est faux :'( ", {
+          //   theme: "bubble",
+          //   position: "top-center",
+          //   duration: 5000
+          // });
         });
     },
     playAmbiance () {
-      this.playSound("https://fboudinet.frenchdev.com/static/share/sounds/maillon_ambiance.mp3")
+      this.playSound("maillon_ambiance.mp3")
       this.time = setTimeout(function () {
           this.playAmbiance()
         }.bind(this), 4400)

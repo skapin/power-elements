@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import userInfo from './modules/userInfo';
 import user from './modules/user';
 import app from './modules/app'
+import boss from './modules/boss'
 
 Vue.use(Vuex);
 
@@ -10,6 +11,7 @@ const store = new Vuex.Store({
   modules: {
     userInfo,
     user,
+    boss,
     app,
   },
   state: {

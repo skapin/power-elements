@@ -4,36 +4,35 @@
     <v-ons-list-title>Infos</v-ons-list-title>
     <v-ons-list>
       <v-ons-list-item modifier="chevron" tappable @click="goTo('home')">
-          <div class="left">
-            <v-ons-icon fixed-width icon="fa-home"></v-ons-icon>
-          </div>
-          <div class="center">Accueil</div>
-        </v-ons-list-item>
-       
-        <v-ons-list-item modifier="chevron" tappable @click="goTo('infosLegales')">
-          <div class="left">
-            <v-ons-icon fixed-width icon="fa-info"></v-ons-icon>
-          </div>
-          <div class="center">Infos légales</div>
-        </v-ons-list-item>
-        <v-ons-list-item modifier="chevron" tappable @click="goTo('politiqueConfidentialite')">
-          <div class="left">
-            <v-ons-icon fixed-width icon="fa-info"></v-ons-icon>
-          </div>
-          <div class="center">Confidentialité</div>
-        </v-ons-list-item>
-        <v-ons-list-item class="admin" modifier="chevron" tappable @click="goTo('admin')">
-          <div class="left">
-            <v-ons-icon fixed-width icon="fa-bar-chart"></v-ons-icon>
-          </div>
-          <div class="center">Panel admin</div>
-        </v-ons-list-item>
-        <v-ons-list-item modifier="chevron" tappable @click="signout()">
-          <div class="left">
-            <v-ons-icon fixed-width icon="fa-sign-out"></v-ons-icon>
-          </div>
-          <div class="center">Déconnexion</div>
-        </v-ons-list-item>
+        <div class="left">
+          <v-ons-icon fixed-width icon="fa-home"></v-ons-icon>
+        </div>
+        <div class="center">Accueil</div>
+      </v-ons-list-item> 
+      <v-ons-list-item modifier="chevron" tappable @click="goTo('infosLegales')">
+        <div class="left">
+          <v-ons-icon fixed-width icon="fa-info"></v-ons-icon>
+        </div>
+        <div class="center">Infos légales</div>
+      </v-ons-list-item>
+      <v-ons-list-item modifier="chevron" tappable @click="goTo('politiqueConfidentialite')">
+        <div class="left">
+          <v-ons-icon fixed-width icon="fa-info"></v-ons-icon>
+        </div>
+        <div class="center">Confidentialité</div>
+      </v-ons-list-item>
+      <v-ons-list-item class="admin" modifier="chevron" tappable @click="goTo('admin')">
+        <div class="left">
+          <v-ons-icon fixed-width icon="fa-bar-chart"></v-ons-icon>
+        </div>
+        <div class="center">Panel admin</div>
+      </v-ons-list-item>
+      <v-ons-list-item modifier="chevron" tappable @click="signout()">
+        <div class="left">
+          <v-ons-icon fixed-width icon="fa-sign-out"></v-ons-icon>
+        </div>
+        <div class="center">Déconnexion</div>
+      </v-ons-list-item>
     </v-ons-list>
   </v-ons-page>
 </template>

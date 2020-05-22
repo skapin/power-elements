@@ -52,6 +52,13 @@ Vue.mixin({
       this.$router.push({ name: routeName });
       store.commit('toggleMenu', false);
     },
+    playSound (sound) {
+      if(sound) {
+        var audio = new Audio("https://fboudinet.frenchdev.com/static/share/sounds/" + sound)
+        audio.type = 'audio/wav'
+        audio.play()
+      }
+    },
   }
 })
 
