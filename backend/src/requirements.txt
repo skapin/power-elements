@@ -7,7 +7,7 @@ PyJWT
 Flask-SQLAlchemy
 Flask-Migrate
 passlib==1.7.1
-cryptography==2.5
+cryptography==3.2
 cffi
 docopt
 gunicorn
